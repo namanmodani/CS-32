@@ -1,0 +1,45 @@
+CS 32 Homework 2
+Naman Modani
+hw.txt
+
+Problem 2
+
+The first 12 (r,c) coordinates popped off the stack by the mazestack algorithm are:
+(4,6)
+(3,6)
+(5,6)
+(5,7)
+(5,8)
+(6,8)
+(7,8)
+(8,8)
+(8,7)
+(6,6)
+(4,5)
+(4,4)
+
+Problem 4
+
+The first 12 (r,c) coordinates popped off the stack by the mazequeue algorithm are:
+(4,6)
+(4,5)
+(5,6)
+(3,6)
+(4,4)
+(6,6)
+(5,7)
+(4,3)
+(5,4)
+(5,8)
+(4,2)
+(6,4)
+
+The algorithms differ in the sense that mazestack implements a stack to perform the search algorithm. This means that
+the last coordinate that get pushed into the stack is the first one to get popped off. The stack explores northern
+branches first and then continues clockwise. This is also a depth-first search, since each path is searched/mapped to
+the end before backtracking and following other potential paths.
+
+Meanwhile, mazequeue - which implements a queue to perform the search algorithm, i.e. the first coordinate on the queue
+is the first coordinate to get popped off. The queue explores western branches first and continues counter-clockwise.
+This is also a breadth-first search, implying that every possible concurrent path is branched out as they diverge until
+the end coordinate is found.
