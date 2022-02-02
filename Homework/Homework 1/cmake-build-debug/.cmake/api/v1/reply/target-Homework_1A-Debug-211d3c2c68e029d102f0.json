@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Homework2_1"
+			"path" : "Homework_1A"
 		}
 	],
 	"backtrace" : 1,
@@ -52,11 +52,12 @@
 			},
 			"sourceIndexes" : 
 			[
-				0
+				0,
+				1
 			]
 		}
 	],
-	"id" : "Homework2_1::@6890427a1f51a3e7e1df",
+	"id" : "Homework_1A::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -72,8 +73,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "Homework2_1",
-	"nameOnDisk" : "Homework2_1",
+	"name" : "Homework_1A",
+	"nameOnDisk" : "Homework_1A",
 	"paths" : 
 	{
 		"build" : ".",
@@ -85,7 +86,15 @@
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				0
+				0,
+				1
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				2
 			]
 		}
 	],
@@ -94,8 +103,19 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "mazestack.cpp",
+			"path" : "testMap.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Map.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Map.h",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"

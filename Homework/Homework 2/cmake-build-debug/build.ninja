@@ -52,16 +52,48 @@ build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 
 build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
+# =============================================================================
+# Object build statements for EXECUTABLE target Homework2_1
+
 
 #############################################
-# Utility command for edit_cache
+# Order-only phony target for Homework2_1
 
-build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd "/home/modani/CLionProjects/CS-32/Homework 2/cmake-build-debug" && /snap/clion/180/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-  DESC = No interactive CMake dialog available...
-  restat = 1
+build cmake_object_order_depends_target_Homework2_1: phony || CMakeFiles/Homework2_1.dir
 
-build edit_cache: phony CMakeFiles/edit_cache.util
+build CMakeFiles/Homework2_1.dir/mazestack.cpp.o: CXX_COMPILER__Homework2_1_Debug /home/modani/CLionProjects/CS-32/Homework$ 2/mazestack.cpp || cmake_object_order_depends_target_Homework2_1
+  DEP_FILE = CMakeFiles/Homework2_1.dir/mazestack.cpp.o.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles/Homework2_1.dir
+  OBJECT_FILE_DIR = CMakeFiles/Homework2_1.dir
+
+build CMakeFiles/Homework2_1.dir/Map.cpp.o: CXX_COMPILER__Homework2_1_Debug /home/modani/CLionProjects/CS-32/Homework$ 2/Map.cpp || cmake_object_order_depends_target_Homework2_1
+  DEP_FILE = CMakeFiles/Homework2_1.dir/Map.cpp.o.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles/Homework2_1.dir
+  OBJECT_FILE_DIR = CMakeFiles/Homework2_1.dir
+
+build CMakeFiles/Homework2_1.dir/eval.cpp.o: CXX_COMPILER__Homework2_1_Debug /home/modani/CLionProjects/CS-32/Homework$ 2/eval.cpp || cmake_object_order_depends_target_Homework2_1
+  DEP_FILE = CMakeFiles/Homework2_1.dir/eval.cpp.o.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles/Homework2_1.dir
+  OBJECT_FILE_DIR = CMakeFiles/Homework2_1.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Homework2_1
+
+
+#############################################
+# Link the executable Homework2_1
+
+build Homework2_1: CXX_EXECUTABLE_LINKER__Homework2_1_Debug CMakeFiles/Homework2_1.dir/mazestack.cpp.o CMakeFiles/Homework2_1.dir/Map.cpp.o CMakeFiles/Homework2_1.dir/eval.cpp.o
+  FLAGS = -g
+  OBJECT_DIR = CMakeFiles/Homework2_1.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = Homework2_1
+  TARGET_PDB = Homework2_1.dbg
 
 # =============================================================================
 # Object build statements for EXECUTABLE target Homework2_3
@@ -94,36 +126,53 @@ build Homework2_3: CXX_EXECUTABLE_LINKER__Homework2_3_Debug CMakeFiles/Homework2
   TARGET_FILE = Homework2_3
   TARGET_PDB = Homework2_3.dbg
 
+
+#############################################
+# Utility command for edit_cache
+
+build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd "/home/modani/CLionProjects/CS-32/Homework 2/cmake-build-debug" && /snap/clion/180/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build edit_cache: phony CMakeFiles/edit_cache.util
+
 # =============================================================================
-# Object build statements for EXECUTABLE target Homework2_1
+# Object build statements for EXECUTABLE target Homework2_5
 
 
 #############################################
-# Order-only phony target for Homework2_1
+# Order-only phony target for Homework2_5
 
-build cmake_object_order_depends_target_Homework2_1: phony || CMakeFiles/Homework2_1.dir
+build cmake_object_order_depends_target_Homework2_5: phony || CMakeFiles/Homework2_5.dir
 
-build CMakeFiles/Homework2_1.dir/mazestack.cpp.o: CXX_COMPILER__Homework2_1_Debug /home/modani/CLionProjects/CS-32/Homework$ 2/mazestack.cpp || cmake_object_order_depends_target_Homework2_1
-  DEP_FILE = CMakeFiles/Homework2_1.dir/mazestack.cpp.o.d
+build CMakeFiles/Homework2_5.dir/eval.cpp.o: CXX_COMPILER__Homework2_5_Debug /home/modani/CLionProjects/CS-32/Homework$ 2/eval.cpp || cmake_object_order_depends_target_Homework2_5
+  DEP_FILE = CMakeFiles/Homework2_5.dir/eval.cpp.o.d
   FLAGS = -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles/Homework2_1.dir
-  OBJECT_FILE_DIR = CMakeFiles/Homework2_1.dir
+  OBJECT_DIR = CMakeFiles/Homework2_5.dir
+  OBJECT_FILE_DIR = CMakeFiles/Homework2_5.dir
+
+build CMakeFiles/Homework2_5.dir/Map.cpp.o: CXX_COMPILER__Homework2_5_Debug /home/modani/CLionProjects/CS-32/Homework$ 2/Map.cpp || cmake_object_order_depends_target_Homework2_5
+  DEP_FILE = CMakeFiles/Homework2_5.dir/Map.cpp.o.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles/Homework2_5.dir
+  OBJECT_FILE_DIR = CMakeFiles/Homework2_5.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target Homework2_1
+# Link build statements for EXECUTABLE target Homework2_5
 
 
 #############################################
-# Link the executable Homework2_1
+# Link the executable Homework2_5
 
-build Homework2_1: CXX_EXECUTABLE_LINKER__Homework2_1_Debug CMakeFiles/Homework2_1.dir/mazestack.cpp.o
+build Homework2_5: CXX_EXECUTABLE_LINKER__Homework2_5_Debug CMakeFiles/Homework2_5.dir/eval.cpp.o CMakeFiles/Homework2_5.dir/Map.cpp.o
   FLAGS = -g
-  OBJECT_DIR = CMakeFiles/Homework2_1.dir
+  OBJECT_DIR = CMakeFiles/Homework2_5.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = Homework2_1
-  TARGET_PDB = Homework2_1.dbg
+  TARGET_FILE = Homework2_5
+  TARGET_PDB = Homework2_5.dbg
 
 # =============================================================================
 # Target aliases.
@@ -136,7 +185,7 @@ build Homework2_1: CXX_EXECUTABLE_LINKER__Homework2_1_Debug CMakeFiles/Homework2
 #############################################
 # Folder: /home/modani/CLionProjects/CS-32/Homework 2/cmake-build-debug
 
-build all: phony Homework2_3 Homework2_1
+build all: phony Homework2_1 Homework2_3 Homework2_5
 
 # =============================================================================
 # Built-in targets
