@@ -1,0 +1,4 @@
+/home/modani/CLionProjects/CS-32/Homework 2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/modani/CLionProjects/CS-32/Homework 2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/modani/CLionProjects/CS-32/Homework 2/cmake-build-debug/CMakeFiles/Homework2_3.dir
+/home/modani/CLionProjects/CS-32/Homework 2/cmake-build-debug/CMakeFiles/Homework2_1.dir
