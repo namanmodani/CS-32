@@ -80,10 +80,10 @@ void StringList::printItem() const // add this to public functions
 
 int main()
 {
-    StringList x("I love Smallberg"); // e h y
+    StringList x("I love Smallberg"); 
     x.eraseThrees();
     x.printItem();
-    StringList y("123123"); // 3 3
+    StringList y("123123");
     y.eraseThrees();
     y.printItem();
     StringList z("");
