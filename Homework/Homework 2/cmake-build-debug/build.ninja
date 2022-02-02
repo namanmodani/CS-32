@@ -67,18 +67,6 @@ build CMakeFiles/Homework2_1.dir/mazestack.cpp.o: CXX_COMPILER__Homework2_1_Debu
   OBJECT_DIR = CMakeFiles/Homework2_1.dir
   OBJECT_FILE_DIR = CMakeFiles/Homework2_1.dir
 
-build CMakeFiles/Homework2_1.dir/Map.cpp.o: CXX_COMPILER__Homework2_1_Debug /home/modani/CLionProjects/CS-32/Homework$ 2/Map.cpp || cmake_object_order_depends_target_Homework2_1
-  DEP_FILE = CMakeFiles/Homework2_1.dir/Map.cpp.o.d
-  FLAGS = -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles/Homework2_1.dir
-  OBJECT_FILE_DIR = CMakeFiles/Homework2_1.dir
-
-build CMakeFiles/Homework2_1.dir/eval.cpp.o: CXX_COMPILER__Homework2_1_Debug /home/modani/CLionProjects/CS-32/Homework$ 2/eval.cpp || cmake_object_order_depends_target_Homework2_1
-  DEP_FILE = CMakeFiles/Homework2_1.dir/eval.cpp.o.d
-  FLAGS = -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles/Homework2_1.dir
-  OBJECT_FILE_DIR = CMakeFiles/Homework2_1.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Homework2_1
@@ -87,7 +75,7 @@ build CMakeFiles/Homework2_1.dir/eval.cpp.o: CXX_COMPILER__Homework2_1_Debug /ho
 #############################################
 # Link the executable Homework2_1
 
-build Homework2_1: CXX_EXECUTABLE_LINKER__Homework2_1_Debug CMakeFiles/Homework2_1.dir/mazestack.cpp.o CMakeFiles/Homework2_1.dir/Map.cpp.o CMakeFiles/Homework2_1.dir/eval.cpp.o
+build Homework2_1: CXX_EXECUTABLE_LINKER__Homework2_1_Debug CMakeFiles/Homework2_1.dir/mazestack.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/Homework2_1.dir
   POST_BUILD = :
