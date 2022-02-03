@@ -39,7 +39,7 @@ the last coordinate that get pushed into the stack is the first one to get poppe
 branches first and then continues clockwise. This is also a depth-first search, since each path is searched/mapped to
 the end before backtracking and following other potential paths.
 
-Meanwhile, mazequeue - which implements a queue to perform the search algorithm, i.e. the first coordinate on the queue
+Meanwhile, mazequeue implements a queue to perform the search algorithm, i.e. the first coordinate on the queue
 is the first coordinate to get popped off. The queue explores western branches first and continues counter-clockwise.
-This is also a breadth-first search, implying that every possible concurrent path is branched out as they diverge until
-the end coordinate is found.
+This is a breadth-first search, implying that every possible concurrent path is branched out as they diverge until the
+end coordinate is found.

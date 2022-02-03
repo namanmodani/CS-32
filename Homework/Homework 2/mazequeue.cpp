@@ -59,38 +59,42 @@ bool pathExists(string maze[], int nRows, int nCols, int sr, int sc, int er, int
             coordQueue.push(Coord(current.r() - 1, current.c()));
         }
 
-        // Debugging
-        // for (int i = 0; i < nRows; i++)
-        // {
-        //      for (int j = 0; j < nCols; j++)
-        //      {
-        //          cout << maze[i][j];
-        //      }
-        //      cout << endl;
-        // }
-        // cout << endl << endl;
+        /*
+        Debugging
+        for (int i = 0; i < nRows; i++)
+        {
+             for (int j = 0; j < nCols; j++)
+             {
+                 cout << maze[i][j];
+             }
+             cout << endl;
+        }
+        cout << endl << endl;
+        */
 
     }
     return false;
 }
 
-// int main()
-//{
-//    string maze[10] = {
-//            "XXXXXXXXXX",
-//            "X.X..X...X",
-//            "X....XXX.X",
-//            "X.XXXX.X.X",
-//            "X......XXX",
-//            "X.XX.X...X",
-//            "X.X..X.X.X",
-//            "X.X.XXXX.X",
-//            "X.X...X..X",
-//            "XXXXXXXXXX"
-//    };
-//
-//    if (pathExists(maze, 10,10, 4,6, 1,1))
-//        cout << "Solvable!" << endl;
-//    else
-//        cout << "Out of luck!" << endl;
-//}
+/*
+int main()
+{
+    string maze[10] = {
+            "XXXXXXXXXX",
+            "X.X..X...X",
+            "X....XXX.X",
+            "X.XXXX.X.X",
+            "X......XXX",
+            "X.XX.X...X",
+            "X.X..X.X.X",
+            "X.X.XXXX.X",
+            "X.X...X..X",
+            "XXXXXXXXXX"
+    };
+
+    if (pathExists(maze, 10,10, 4,6, 1,1))
+        cout << "Solvable!" << endl;
+    else
+        cout << "Out of luck!" << endl;
+}
+*/
