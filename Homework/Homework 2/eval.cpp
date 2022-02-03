@@ -23,3 +23,52 @@ bool isPrecendent(char x, char y)
         return true;
     return false;
 }
+
+int paranthesesTest(string& infix, int index, int& endIndex)
+{
+    int count = 0;
+    for (int i = index + 1; i < infix.size(); i++)
+    {
+        switch (infix[i])
+        {
+            case ' ':
+                break;
+            case '/':
+            case '*':
+            case '-':
+            case '+':
+                count--;
+                break;
+            case '(':
+            {
+                if (count != 0)
+                    return 1;
+                int end;
+                int result = paranthesesTest(infix, i, end);
+                if (result == 1)
+                    return 1;
+                count++;
+                i = end;
+                break;
+            }
+            case ')':
+            {
+                if (count != 1)
+                    return 1;
+                endIndex = i;
+                return 0;
+                default:
+                    if (isalpha(infix[i]) && islower(infix[i]))
+                    {
+                        count++;
+                    }
+                    else
+                        return 1;
+            }
+
+        }
+    }
+    return 1;
+}
+
+ 
