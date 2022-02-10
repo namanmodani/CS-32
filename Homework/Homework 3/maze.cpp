@@ -7,7 +7,7 @@
 class Coord
 {
 public:
-    (int rr, int cc): m_r(rr), m_c(cc){}
+    Coord(int rr, int cc): m_r(rr), m_c(cc){}
     int r() const
     {
         return m_r;
@@ -21,23 +21,23 @@ private:
     int m_c;
 };
 
-bool pathExists(string maze[], int nRows, int nCold, int sr, int sc, int er, int ec)
+bool pathExists(string maze[], int nRows, int nCols, int sr, int sc, int er, int ec)
 {
     if (sr == er && sc == ec)
         return true;
     maze[sr][sc] = "!";
 
     // North
-    if (maze[sr - 1][sc] == '.' && pathExists(maze, nRows, nCold, sr - 1, sc, er, ec))
+    if (maze[sr - 1][sc] == '.' && pathExists(maze, nRows, nCols, sr - 1, sc, er, ec))
         return true;
     // South
-    if (maze[sr + 1][sc] == '.' && pathExists(maze, nRows, nCold, sr + 1, sc, er, ec))
+    if (maze[sr + 1][sc] == '.' && pathExists(maze, nRows, nCols, sr + 1, sc, er, ec))
         return true;
     // East
-    if (maze[sr][sc + 1] == '.' && pathExists(maze, nRows, nCold, sr, sc + 1, er, ec))
+    if (maze[sr][sc + 1] == '.' && pathExists(maze, nRows, nCols, sr, sc + 1, er, ec))
         return true;
     // West
-    if (maze[sr][sc - 1] == '.' && pathExists(maze, nRows, nCold, sr, sc - 1, er, ec))
+    if (maze[sr][sc - 1] == '.' && pathExists(maze, nRows, nCols, sr, sc - 1, er, ec))
         return true;
     return false;
 }

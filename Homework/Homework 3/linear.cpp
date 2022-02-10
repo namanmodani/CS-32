@@ -13,7 +13,7 @@ bool anyFalse(const double a[], int n)
     if (!somePredicate(a[0]))
         return true;
     else
-        return anyFalse(a + 1, n - 1)
+        return anyFalse(a + 1, n - 1);
 }
 
 // Return the number of elements in the array for which the
@@ -25,7 +25,7 @@ int countFalse(const double a[], int n)
         return count;
     if (!somePredicate(a[0]))
         count++;
-    return count + countFalse(a + 1, n - 1)
+    return count + countFalse(a + 1, n - 1);
 }
 
 // Return the subscript of the first element in the array for which
