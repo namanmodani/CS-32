@@ -56,13 +56,12 @@ int locateMax(const double a[], int n)
 {
     if (n < 1)
         return -1;
-    if (n == 1)
+    int index = locateMax(a + 1, n - 1);
+    if (index != 0 && a[0] >= a[index])
         return 0;
-    int index = locateMax(a + 1, n - 1) + 1;
-    if (a[0] < a[index])
-        return index;
-    else
-        return 0;
+    if(index == -1)
+        return -1;
+    return 1 + index;
 }
 
 // If all n2 elements of a2 appear in the n1 element array a1, in
