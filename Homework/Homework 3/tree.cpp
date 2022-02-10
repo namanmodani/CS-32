@@ -17,26 +17,14 @@
 //        50 40 30                        3
 int countContains(const double a1[], int n1, const double a2[], int n2)
 {
-    int count = 0;
-    if (n1 < 0)
-        n1 = 0;
-    if (n2 < 0)
-        n2 = 0;
-    if (n1 == 0)
+    if (n1 == 0 && n2 != 0)
         return 0;
     if (n2 == 0)
         return 1;
-
     if (a1[0] == a2[0])
-    {
-        count += countContains(a1 + 1, n1 - 1, a2, n2);
-        count += countContains(a1 + 1, n1 - 1, a2 + 1, n2 - 1);
-    }
+        return countContains(a1 + 1, n1 - 1, a2, n2) + countContains(a1 + 1, n1 - 1, a2 + 1, n2 - 1);
     else
-    {
-        count += countContains(a1 + 1, n1 - 1, a2, n2);
-    }
-    return count;
+        return countContains(a1 + 1, n1 - 1, a2, n2);
 }
 
 // Exchange two doubles
@@ -106,8 +94,8 @@ void order(double a[], int n)
 {
     if (n <= 1)
         return;
-    int notGreater;
-    int firstLess;
+    int notGreater = 0;
+    int firstLess = n;
     separate(a, n, a[0], notGreater, firstLess);
     order(a, notGreater);
     order(a + firstLess, n - firstLess);
