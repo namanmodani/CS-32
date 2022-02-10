@@ -11,7 +11,7 @@ public:
     {
         m_name = sportName;
     }
-    virtual ~Sport() {};
+    virtual ~Sport() {}
     string name() const
     {
         return m_name;
@@ -25,7 +25,7 @@ private:
 class Biathlon: public Sport
 {
 public:
-    Biathlon(string name, double distance): Sport(name)
+    Biathlon(string name, double distance):Sport(name)
     {
         m_distance = distance;
     }
@@ -48,7 +48,7 @@ private:
 class Snowboarding: public Sport
         {
 public:
-    Snowboarding(string name) : Sport(name) {}
+    Snowboarding(string name):Sport(name) {}
     ~Snowboarding()
     {
         cout << "Destroying the Snowboarding object named " << name() << "." << endl;
@@ -66,7 +66,7 @@ public:
 class FigureSkating: public Sport
 {
 public:
-    FigureSkating(string name): Sport(name) {}
+    FigureSkating(string name):Sport(name) {}
     ~FigureSkating()
     {
         cout << "Destroying the FigureSkating object named " << name() << "." << endl;
