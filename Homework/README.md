@@ -4,4 +4,5 @@ The following table houses my homework scores through CS 32.
 
 | Homework | Score |
 | ------- | ----- |
-| 1 | 96/100  |
+| 1 | 96/100 |
+| 2 | 88/100 |
