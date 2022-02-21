@@ -18,7 +18,7 @@ public:
     virtual ~Actor();
 
     virtual void doSomething() = 0;
-    virtual void bonked() = 0;
+    virtual void bonk() = 0;
 
     StudentWorld* getWorld()
     {
@@ -43,7 +43,7 @@ public:
         return m_ID;
     }
 
-    bool is_alive();
+    bool is_Alive();
 
 private:
     int m_tick;
@@ -59,9 +59,59 @@ public:
     virtual ~Peach();
 
     virtual void doSomething();
-    virtual void bonked();
+    virtual void bonk();
+
+    int getHP()
+    {
+        return m_HP;
+    }
+
+    void getInviciblility()
+    {
+        m_Invincibility = true;
+    }
+
+    void getStarPower()
+    {
+        m_StarPower = true;
+    }
+
+    void getShootPower()
+    {
+        m_ShootPower = true;
+    }
+
+    void getSuperJumpPower()
+    {
+        m_SuperJumpPower = true;
+    }
+
+    bool hasInvincibility()
+    {
+        return m_Invincibility;
+    }
+
+    bool hasStarPower()
+    {
+        return m_StarPower;
+    }
+
+    bool hasShootPower()
+    {
+        return m_ShootPower;
+    }
+
+    bool hasSuperJumpPower()
+    {
+        return m_SuperJumpPower;
+    }
 
 private:
+    int m_HP;
+    bool m_Invincibility;
+    bool m_StarPower;
+    bool m_ShootPower;
+    bool m_SuperJumpPower;
     StudentWorld* m_world;
 };
 
@@ -72,7 +122,7 @@ public:
     virtual ~Block();
 
     virtual void doSomething();
-    virtual void bonked();
+    virtual void bonk();
 
 private:
     int m_goodie;
