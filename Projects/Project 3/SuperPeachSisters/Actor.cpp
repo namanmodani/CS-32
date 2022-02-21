@@ -8,14 +8,13 @@
 #include "StudentWorld.h"
 using namespace std;
 
-Actor::Actor(StudentWorld* sw, int imageID, int x, int y, int dir, int depth, double size, bool is_alive)
-:GraphObject(imageID, x * SPRITE_WIDTH, y * SPRITE_HEIGHT)
+Actor::Actor(StudentWorld* sw, int imageID, int x, int y, int dir, int depth, double size, bool is_alive) :GraphObject(imageID, x * SPRITE_WIDTH, y * SPRITE_HEIGHT)
 {
     m_ID = imageID;
     m_alive = is_alive;
 }
 
-bool Actor::is_alive()
+bool Actor::is_Alive()
 {
     if (m_alive)
     {
@@ -29,14 +28,48 @@ bool Actor::is_alive()
 
 Actor::~Actor() {}
 
-Peach::Peach(StudentWorld* sw, int x, int y): Actor(sw, IID_PEACH, x, y, 0, 0, 1, true),
-                                                    m_world(sw)
+Block::Block(StudentWorld* sw, int x, int y, bool goodie_released = false): Actor(sw, IID_BLOCK, x, y, 0, 2, 1, true), m_world(sw)
 {
-    int health_point = 1;
+    int goodie = 0;
+    m_goodie = goodie;
+}
+
+void Block::bonk()
+{
+    if (m_goodie == 0)
+    {
+        getWorld()->playSound(SOUND_PLAYER_BONK);
+    }
+    else if (m_goodie == 1) {} // Star Power
+    else if (m_goodie == 2) {} // Shoot Power
+    else if (m_goodie == 3) {} // Super Jump Power
+    return;
+}
+
+void Block::doSomething() {}
+Block::~Block() {}
+
+Peach::Peach(StudentWorld* sw, int x, int y): Actor(sw, IID_PEACH, x, y, 0, 0, 1, true), m_world(sw)
+{
+    int health_point = 3;
+
+    bool Invincibility = false;
+    bool StarPower = false;
+    bool ShootPower = false;
+    bool SuperJumpPower = false;
+
+    m_HP = health_point;
+    m_Invincibility = Invincibility;
+    m_StarPower = StarPower;
+    m_ShootPower = ShootPower;
+    m_SuperJumpPower = SuperJumpPower;
 }
 
 void Peach::doSomething()
 {
+    if(getHP() == 0)
+        return;
+
     int key;
     if (m_world->getKey(key))
     {
@@ -66,23 +99,5 @@ void Peach::doSomething()
     }
 }
 
-void Peach::bonked() {}
+void Peach::bonk() {}
 Peach::~Peach() {}
-
-Block::Block(StudentWorld* sw, int x, int y, bool goodie_released = false)
-:Actor(sw, IID_BLOCK, x, y, 0, 2, 1, true), m_world(sw)
-{
-    int goodie = 0;
-    m_goodie = goodie;
-}
-
-void Block::bonked()
-{
-    if (m_goodie == 0)
-    {
-        getWorld()->playSound(SOUND_PLAYER_BONK);
-    }
-}
-
-void Block::doSomething() {}
-Block::~Block() {}

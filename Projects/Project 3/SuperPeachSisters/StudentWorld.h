@@ -1,21 +1,39 @@
-#ifndef STUDENTWORLD_H_
-#define STUDENTWORLD_H_
+//
+// CS 32 Project 3
+// Naman Modani
+// StudentWorld.h
+//
+
+#ifndef STUDENTWORLD_H
+#define STUDENTWORLD_H
 
 #include "GameWorld.h"
 #include "Level.h"
+#include "Actor.h"
 #include <string>
+#include <vector>
+#include <cmath>
+using namespace std;
 
-// Students:  Add code to this file, StudentWorld.cpp, Actor.h, and Actor.cpp
+class Actor;
+class Peach;
+class Block;
 
-class StudentWorld : public GameWorld
+class StudentWorld: public GameWorld
 {
 public:
-  StudentWorld(std::string assetPath);
-  virtual int init();
-  virtual int move();
-  virtual void cleanUp();
+    StudentWorld(string assetPath);
+    ~StudentWorld();
+
+    virtual int init();
+    virtual int move();
+    virtual void cleanUp();
+
+    bool isBlockingObjectAt(double x, double y);
 
 private:
+    vector<Actor*> actors;
+    Peach* m_peach;
 };
 
-#endif // STUDENTWORLD_H_
+#endif //STUDENTWORLD_H
