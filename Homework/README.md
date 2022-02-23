@@ -6,3 +6,4 @@ The following table houses my homework scores through CS 32.
 | ------- | ----- |
 | 1 | 96/100 |
 | 2 | 88/100 |
+| 3 | 96/100 |

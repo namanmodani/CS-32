@@ -97,6 +97,20 @@ void StudentWorld::cleanUp()
         actors[0] = nullptr;
         actors.erase(actors.begin());
     }
+<<<<<<< HEAD
+=======
+}
+
+// Check actor overlap with other objects
+bool StudentWorld::isBlockingObjectAt(double x, double y)
+{
+    for(Actor* a: actors) {
+        if (x + SPRITE_WIDTH - 1 > a->getX() && x < a->getX() + SPRITE_WIDTH - 1)
+            if (y + SPRITE_HEIGHT - 1 > a->getY() && y < a->getY() + SPRITE_HEIGHT - 1)
+                return true;
+    }
+    return false;
+>>>>>>> 1ae55dc1ddcbbf4455ddca0ae59153506b93706f
 }
 
 // Check actor overlap with other objects

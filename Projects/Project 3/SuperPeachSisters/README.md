@@ -1,3 +1,5 @@
+# Super Peach Sisters
+
 This is how to build a soundless version of SuperPeachSisters, assuming you've
 already installed freeGLUT:
 
