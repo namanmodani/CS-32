@@ -51,7 +51,7 @@ Block::~Block() {}
 
 Peach::Peach(StudentWorld* sw, int x, int y): Actor(sw, IID_PEACH, x, y, 0, 0, 1, true), m_world(sw)
 {
-    int health_point = 3;
+    int health_point = 1;
 
     bool Invincibility = false;
     bool StarPower = false;

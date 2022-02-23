@@ -1,0 +1,5 @@
+/home/modani/CLionProjects/CS-32/Midterm 2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/modani/CLionProjects/CS-32/Midterm 2/cmake-build-debug/CMakeFiles/Midterm_2_1.dir
+/home/modani/CLionProjects/CS-32/Midterm 2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/modani/CLionProjects/CS-32/Midterm 2/cmake-build-debug/CMakeFiles/Midterm_2_2.dir
+/home/modani/CLionProjects/CS-32/Midterm 2/cmake-build-debug/CMakeFiles/Midterm_2_3.dir

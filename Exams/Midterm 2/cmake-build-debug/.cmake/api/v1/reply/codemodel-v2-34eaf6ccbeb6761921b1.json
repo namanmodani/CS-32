@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.21"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Midterm_2",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Midterm_2_1::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Midterm_2_1-Debug-26d7fa8da0f08545b5b8.json",
+					"name" : "Midterm_2_1",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Midterm_2_2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Midterm_2_2-Debug-48e81e9480c1d2181bb3.json",
+					"name" : "Midterm_2_2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Midterm_2_3::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Midterm_2_3-Debug-6c95ca74e110cc7aaddc.json",
+					"name" : "Midterm_2_3",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/modani/CLionProjects/CS-32/Midterm 2/cmake-build-debug",
+		"source" : "/home/modani/CLionProjects/CS-32/Midterm 2"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
