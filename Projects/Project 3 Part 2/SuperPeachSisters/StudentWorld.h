@@ -36,7 +36,10 @@ public:
     void levelCompleted();
 
 private:
-    vector<Actor*> actors;
+    vector<Actor*> m_vectorOfActors;
+    bool m_wasGameWon;
+    bool m_wasLevelCompleted;
+    bool areOverlapping(int x1, int y1, int x2, int y2);
 };
 
 #endif //STUDENTWORLD_H
