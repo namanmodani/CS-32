@@ -8,12 +8,13 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <sstream>
+#include <iomanip>
 
 // Import header files
 #include "StudentWorld.h"
 #include "GameConstants.h"
 #include "Actor.h"
-#include "Level.h"
 
 using namespace std;
 
@@ -35,34 +36,71 @@ StudentWorld::~StudentWorld()
     cleanUp();
 }
 
-// Loader of data from "LEVELXY.TXT"
 int StudentWorld::init()
 {
+    gameWinStatus = false;
+    levelCompleteStatus = false;
     Level lev(assetPath());
-    string level_file = "level0" + to_string(getLevel()) + ".txt";
-    Level::LoadResult result = lev.loadLevel(level_file);
+    ostringstream oss;
+    oss << "level";
+    oss.fill('0');
+    oss << setw(2) << getLevel() << ".txt";
+    string level_file = oss.str();
 
-    if(result == Level::load_success)
+    Level::LoadResult result = lev.loadLevel(level_file);
+    if (result == Level::load_fail_file_not_found)
     {
-        cerr << level_file << ": Successfully loaded!" << endl;
+        return GWSTATUS_LEVEL_ERROR;
+    }
+    else if (result == Level::load_fail_bad_format)
+    {
+        return GWSTATUS_LEVEL_ERROR;
+    }
+    else if (result == Level::load_success)
+    {
         Level::GridEntry ge;
 
-        for (int x = 0; x < GRID_WIDTH; x++)
+        for (int row = 0; row < GRID_HEIGHT; row++)
         {
-            for (int y = 0; y < GRID_HEIGHT; y++)
+            for (int col = 0; col < GRID_WIDTH; col++)
             {
-                ge = lev.getContentsOf(x, y);
+                Level::GridEntry ge = lev.getContentsOf(col, row);
                 switch (ge)
                 {
                     case Level::empty:
                         break;
                     case Level::peach:
-                        m_peach = new Peach(this, x, y);
+                        actorVector.push_back(new Peach(col * SPRITE_WIDTH, row * SPRITE_HEIGHT, this));
+                        break;
+                    case Level::goomba:
+                        actorVector.push_back(new Goomba(col * SPRITE_WIDTH, row * SPRITE_HEIGHT, this));
+                        break;
+                    case Level::koopa:
+                        actorVector.push_back(new Koopa(col * SPRITE_WIDTH, row * SPRITE_HEIGHT, this));
+                        break;
+                    case Level::piranha:
+                        actorVector.push_back(new Piranha(col * SPRITE_WIDTH, row * SPRITE_HEIGHT, this));
                         break;
                     case Level::block:
-                        actors.push_back(new Block(this, x, y, false));
+                        actorVector.push_back(new Block(col * SPRITE_WIDTH, row * SPRITE_HEIGHT, this));
                         break;
-                    default:
+                    case Level::star_goodie_block:
+                        actorVector.push_back(new Block(col * SPRITE_WIDTH, row * SPRITE_HEIGHT, this, STAR_GOODIE));
+                        break;
+                    case Level::mushroom_goodie_block:
+                        actorVector.push_back(new Block(col * SPRITE_WIDTH, row * SPRITE_HEIGHT, this, MUSHROOM_GOODIE));
+                        break;
+                    case Level::flower_goodie_block:
+                        actorVector.push_back(new Block(col * SPRITE_WIDTH, row * SPRITE_HEIGHT, this, FLOWER_GOODIE));
+                        break;
+                    case Level::pipe:
+                        actorVector.push_back(new Pipe(col * SPRITE_WIDTH, row * SPRITE_HEIGHT, this));
+                        break;
+                    case Level::flag:
+                        actorVector.push_back(new Flag(col * SPRITE_WIDTH, row * SPRITE_HEIGHT, this));
+                        break;
+                    case Level::mario:
+                        actorVector.push_back(new Mario(col * SPRITE_WIDTH, row * SPRITE_HEIGHT, this));
                         break;
                 }
             }
@@ -71,41 +109,188 @@ int StudentWorld::init()
     return GWSTATUS_CONTINUE_GAME;
 }
 
-// Call Actors to doSomething()
 int StudentWorld::move()
 {
-    m_peach->doSomething();
-    for(vector<Actor*>::iterator it = actors.begin(); it != actors.end(); ++it)
+    std::vector<Actor*>::iterator it = actorVector.begin();
+    Actor* tempPeach = getPeach();
+    for (; it != actorVector.end(); it++)
     {
-        if ((*it)->is_Alive())
+        if ((*it)->isAlive() == false)
         {
-            (*it)->doSomething();
+            continue;
+        }
+
+        (*it)->doSomething();
+
+        if (tempPeach->isAlive() == false)
+        {
+            playSound(SOUND_PLAYER_DIE);
+            decLives();
+            return GWSTATUS_PLAYER_DIED;
+        }
+
+        if (gameWinStatus)
+        {
+            playSound(SOUND_GAME_OVER);
+            return GWSTATUS_PLAYER_WON;
+        }
+
+        if (levelCompleteStatus)
+        {
+            playSound(SOUND_FINISHED_LEVEL);
+            return GWSTATUS_FINISHED_LEVEL;
         }
     }
+
+    it = actorVector.begin();
+    while (it != actorVector.end())
+    {
+        if ((*it)->isAlive() == false)
+        {
+            delete (*it);
+            it = actorVector.erase(it);
+        }
+        else
+        {
+            it++;
+        }
+    }
+
+    ostringstream oss;
+    oss.fill(' ');
+    oss << "Lives: " << setw(2) << getLives() << "  ";
+    oss.fill('0');
+    oss << "Level: " << setw(2) << getLevel() << "  ";
+    oss.fill('0');
+    oss << "Points: " << setw(6) << getScore();
+    oss.fill(' ');
+
+    if (tempPeach->useStarPower())
+    {
+        oss << " StarPower!";
+    }
+    if (tempPeach->useFlowerPower())
+    {
+        oss << " ShootPower!";
+    }
+    if (tempPeach->useJumpPower())
+    {
+        oss << " JumpPower!";
+    }
+
+    setGameStatText(oss.str());
     return GWSTATUS_CONTINUE_GAME;
 }
 
-// Avoid dangling pointers or memory leaks
 void StudentWorld::cleanUp()
 {
-    delete m_peach;
-    m_peach = nullptr;
-
-    while(!actors.empty())
+    std::vector<Actor*>::iterator it = actorVector.begin();
+    while (it != actorVector.end())
     {
-        delete actors[0];
-        actors[0] = nullptr;
-        actors.erase(actors.begin());
+        delete (*it);
+        it = actorVector.erase(it);
     }
 }
 
-// Check actor overlap with other objects
-bool StudentWorld::isBlockingObjectAt(double x, double y)
+Actor* StudentWorld::getPeach() {
+    std::vector<Actor*>::iterator it = actorVector.begin();
+    for (; it != actorVector.end(); it++)
+    {
+        if ((*it)->isPlayerControlled())
+        {
+            return *it;
+        }
+    }
+    return nullptr;
+}
+
+bool StudentWorld::isOverlappingWithPeach(int x, int y)
 {
-    for(Actor* a: actors) {
-        if (x + SPRITE_WIDTH - 1 > a->getX() && x < a->getX() + SPRITE_WIDTH - 1)
-            if (y + SPRITE_HEIGHT - 1 > a->getY() && y < a->getY() + SPRITE_HEIGHT - 1)
+    Actor* tempPeach = getPeach();
+    return areOverlapping(tempPeach->getX(), tempPeach->getY(), x, y);
+}
+
+bool StudentWorld::isOverlappingWithEnemy(int x, int y)
+{
+    std::vector<Actor*>::iterator it = actorVector.begin();
+    for (; it != actorVector.end(); it++)
+    {
+        if ((*it)->isDamageable() && (*it)->isPlayerControlled() == false && (*it)->isAlive())
+        {
+            if (areOverlapping(x, y, (*it)->getX(), (*it)->getY()))
+            {
+                (*it)->takeDamage();
                 return true;
+            }
+        }
     }
     return false;
+}
+
+bool StudentWorld::isBlockingObjectAt(int x, int y)
+{
+    std::vector<Actor*>::iterator it = actorVector.begin();
+    for (; it != actorVector.end(); it++) {
+        if (areOverlapping(x, y, (*it)->getX(), (*it)->getY()))
+        {
+            if ((*it)->canBeOverlappedWith() == false)
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+bool StudentWorld::areOverlapping(int x1, int y1, int x2, int y2)
+{
+    int differenceX = x1 - x2;
+    if (differenceX < 0)
+    {
+        differenceX *= -1;
+    }
+    int differenceY = y1 - y2;
+    if (differenceY < 0)
+    {
+        differenceY *= -1;
+    }
+    if (differenceX < SPRITE_WIDTH && differenceY < SPRITE_HEIGHT)
+    {
+        return true;
+    }
+    return false;
+}
+
+void StudentWorld::bonkObjectsAt(int x, int y)
+{
+    std::vector<Actor*>::iterator it = actorVector.begin();
+    for (; it != actorVector.end(); it++)
+    {
+        if (areOverlapping(x, y, (*it)->getX(), (*it)->getY()) && (*it)->isPlayerControlled() == false)
+        {
+            (*it)->bonk();
+            if ((*it)->canBeOverlappedWith() == false)
+            {
+                return;
+            }
+        }
+    }
+}
+
+void StudentWorld::addActor(Actor* actor)
+{
+    actorVector.push_back(actor);
+}
+
+void StudentWorld::gameWon()
+{
+    gameWinStatus = true;
+    increaseScore(1000);
+}
+
+void StudentWorld::levelCompleted()
+{
+    levelCompleteStatus = true;
+    increaseScore(1000);
 }

@@ -31,15 +31,15 @@ public:
     bool isOverlappingWithPeach(int x, int y);
     bool isOverlappingWithEnemy(int x, int y);
     void bonkObjectsAt(int x, int y);
-    void introduceActor(Actor* actor);
+    void addActor(Actor* actor);
     void gameWon();
     void levelCompleted();
 
 private:
-    vector<Actor*> m_vectorOfActors;
-    bool m_wasGameWon;
-    bool m_wasLevelCompleted;
+    vector<Actor*> actorVector;
+    bool gameWinStatus;
+    bool levelCompleteStatus;
     bool areOverlapping(int x1, int y1, int x2, int y2);
 };
 
-#endif //STUDENTWORLD_H
+#endif // STUDENTWORLD_H
