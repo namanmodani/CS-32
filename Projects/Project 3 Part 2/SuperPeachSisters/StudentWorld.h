@@ -9,15 +9,11 @@
 
 #include "GameWorld.h"
 #include "Level.h"
-#include "Actor.h"
 #include <string>
 #include <vector>
-#include <cmath>
 using namespace std;
 
 class Actor;
-class Peach;
-class Block;
 
 class StudentWorld: public GameWorld
 {
@@ -29,11 +25,18 @@ public:
     virtual int move();
     virtual void cleanUp();
 
-    bool isBlockingObjectAt(double x, double y);
+    Actor* getPeach();
+
+    bool isBlockingObjectAt(int x, int y);
+    bool isOverlappingWithPeach(int x, int y);
+    bool isOverlappingWithEnemy(int x, int y);
+    void bonkObjectsAt(int x, int y);
+    void introduceActor(Actor* actor);
+    void gameWon();
+    void levelCompleted();
 
 private:
     vector<Actor*> actors;
-    Peach* m_peach;
 };
 
 #endif //STUDENTWORLD_H
