@@ -130,8 +130,4 @@ private:
     StudentWorld* m_world;
 };
 
-<<<<<<< HEAD
 #endif //ACTOR_H
-=======
-#endif //ACTOR_H
->>>>>>> 1ae55dc1ddcbbf4455ddca0ae59153506b93706f

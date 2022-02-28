@@ -1,0 +1,7 @@
+Type
+        ./SuperPeachSisters
+to play the game.
+
+You won't hear any sound effects. The Linux version builds and tries to
+connect to an X11 server, so it should work if your DISPLAY environment
+variable is set correctly.
