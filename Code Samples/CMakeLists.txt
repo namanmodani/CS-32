@@ -3,4 +3,6 @@ project(Code_Samples)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Code_Samples Circle.h myapp.cpp Circle.cpp)
+add_executable(Code_Samples Circle/Circle.h Circle/myapp.cpp Circle/Circle.cpp)
+
+

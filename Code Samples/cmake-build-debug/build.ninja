@@ -72,17 +72,17 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 build cmake_object_order_depends_target_Code_Samples: phony || CMakeFiles/Code_Samples.dir
 
-build CMakeFiles/Code_Samples.dir/myapp.cpp.o: CXX_COMPILER__Code_Samples_Debug /home/modani/GitHub/CS-32/Code$ Samples/myapp.cpp || cmake_object_order_depends_target_Code_Samples
-  DEP_FILE = CMakeFiles/Code_Samples.dir/myapp.cpp.o.d
+build CMakeFiles/Code_Samples.dir/Circle/myapp.cpp.o: CXX_COMPILER__Code_Samples_Debug /home/modani/GitHub/CS-32/Code$ Samples/Circle/myapp.cpp || cmake_object_order_depends_target_Code_Samples
+  DEP_FILE = CMakeFiles/Code_Samples.dir/Circle/myapp.cpp.o.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles/Code_Samples.dir
-  OBJECT_FILE_DIR = CMakeFiles/Code_Samples.dir
+  OBJECT_FILE_DIR = CMakeFiles/Code_Samples.dir/Circle
 
-build CMakeFiles/Code_Samples.dir/Circle.cpp.o: CXX_COMPILER__Code_Samples_Debug /home/modani/GitHub/CS-32/Code$ Samples/Circle.cpp || cmake_object_order_depends_target_Code_Samples
-  DEP_FILE = CMakeFiles/Code_Samples.dir/Circle.cpp.o.d
+build CMakeFiles/Code_Samples.dir/Circle/Circle.cpp.o: CXX_COMPILER__Code_Samples_Debug /home/modani/GitHub/CS-32/Code$ Samples/Circle/Circle.cpp || cmake_object_order_depends_target_Code_Samples
+  DEP_FILE = CMakeFiles/Code_Samples.dir/Circle/Circle.cpp.o.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles/Code_Samples.dir
-  OBJECT_FILE_DIR = CMakeFiles/Code_Samples.dir
+  OBJECT_FILE_DIR = CMakeFiles/Code_Samples.dir/Circle
 
 
 # =============================================================================
@@ -92,7 +92,7 @@ build CMakeFiles/Code_Samples.dir/Circle.cpp.o: CXX_COMPILER__Code_Samples_Debug
 #############################################
 # Link the executable Code_Samples
 
-build Code_Samples: CXX_EXECUTABLE_LINKER__Code_Samples_Debug CMakeFiles/Code_Samples.dir/myapp.cpp.o CMakeFiles/Code_Samples.dir/Circle.cpp.o
+build Code_Samples: CXX_EXECUTABLE_LINKER__Code_Samples_Debug CMakeFiles/Code_Samples.dir/Circle/myapp.cpp.o CMakeFiles/Code_Samples.dir/Circle/Circle.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/Code_Samples.dir
   POST_BUILD = :
