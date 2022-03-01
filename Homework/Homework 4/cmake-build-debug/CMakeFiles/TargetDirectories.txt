@@ -1,0 +1,9 @@
+/home/modani/GitHub/CS-32/Homework/Homework 4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/modani/GitHub/CS-32/Homework/Homework 4/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/modani/GitHub/CS-32/Homework/Homework 4/cmake-build-debug/CMakeFiles/Homework_4_4a.dir
+/home/modani/GitHub/CS-32/Homework/Homework 4/cmake-build-debug/CMakeFiles/Homework_4_3d.dir
+/home/modani/GitHub/CS-32/Homework/Homework 4/cmake-build-debug/CMakeFiles/Homework_4_7.dir
+/home/modani/GitHub/CS-32/Homework/Homework 4/cmake-build-debug/CMakeFiles/Homework_4_1.dir
+/home/modani/GitHub/CS-32/Homework/Homework 4/cmake-build-debug/CMakeFiles/Homework_4_3c.dir
+/home/modani/GitHub/CS-32/Homework/Homework 4/cmake-build-debug/CMakeFiles/Homework_4_3a.dir
+/home/modani/GitHub/CS-32/Homework/Homework 4/cmake-build-debug/CMakeFiles/Homework_4_3b.dir
