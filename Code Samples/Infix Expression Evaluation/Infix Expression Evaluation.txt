@@ -1,0 +1,44 @@
+Carrano's pseudocode for the infix to postfix conversion step:
+
+	Initialize postfix to empty
+	Initialize the operator stack to empty
+	For each character ch in the infix string
+	    Switch (ch)
+	      case operand:
+	        append ch to end of postfix
+	        break
+	      case '(':
+	        push ch onto the operator stack
+	        break
+              case ')':
+	          // pop stack until matching '('
+	        While stack top is not '('
+	          append the stack top to postfix
+	          pop the stack
+	        pop the stack  // remove the '('
+	        break
+	      case operator:
+	        While the stack is not empty and the stack top is not '('
+	                and precedence of ch <= precedence of stack top
+	            append the stack top to postfix
+                    pop the stack
+                push ch onto the stack
+                break
+	While the stack is not empty
+	    append the stack top to postfix
+            pop the stack
+And here is his pseudocode for the evaluation of the postfix expression:
+
+	Initialize the operand stack to empty
+	For each character ch in the postfix string
+	    if ch is an operand
+	        push the value that ch represents onto the operand stack
+	    else // ch is a binary operator
+	        set operand2 to the top of the operand stack
+		pop the stack
+	        set operand1 to the top of the operand stack
+		pop the stack
+		apply the operation that ch represents to operand1 and
+	            operand2, and push the result onto the stack
+	When the loop is finished, the operand stack will contain one item,
+	  the result of evaluating the expression
