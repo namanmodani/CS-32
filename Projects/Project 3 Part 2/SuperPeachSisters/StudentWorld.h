@@ -21,15 +21,19 @@ public:
     StudentWorld(string assetPath);
     ~StudentWorld();
 
+    // Initializes each level - game start, new level, restart level
     virtual int init();
+    // 20x per second, update game actors, introduce new actors, delete actors
     virtual int move();
+    // Current level, loses a life, frees all actors
     virtual void cleanUp();
 
     Actor* getPeach();
 
+    // x and y are pixel coordinates
     bool isBlockingObjectAt(int x, int y);
-    bool isOverlappingWithPeach(int x, int y);
-    bool isOverlappingWithEnemy(int x, int y);
+    bool overlapsWithPeach(int x, int y);
+    bool overlapsWithEnemy(int x, int y);
     void bonkObjectsAt(int x, int y);
     void addActor(Actor* actor);
     void gameWon();

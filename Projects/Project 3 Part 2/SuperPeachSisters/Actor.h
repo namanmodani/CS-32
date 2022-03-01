@@ -12,6 +12,8 @@
 
 class StudentWorld;
 
+// Actor Specific Constants
+
 const int PEACH_STEP = 4;
 const int ENEMY_STEP = 1;
 const int GOODIE_STEP = 2;
@@ -21,6 +23,8 @@ const int STAR_GOODIE = 1;
 const int FLOWER_GOODIE = 2;
 const int MUSHROOM_GOODIE = 3;
 
+// Actor Declarations
+
 class Actor: public GraphObject {
 public:
     Actor(int imageID, int startX, int startY, int startDirection, int depth, StudentWorld* studentWorldPtr);
@@ -28,27 +32,31 @@ public:
     virtual void doSomething() = 0;
     StudentWorld* getWorld()
     {
-        return m_studentWorldPtr;
+        return m_studentWorld;
     }
     bool isAlive()
     {
         return m_isAlive;
     }
-    virtual bool canBeOverlappedWith()
+    virtual bool Overlappable()
     {
+        // Default true
         return true;
     }
     virtual bool isPlayerControlled()
     {
+        // Default false
         return false;
     }
     virtual bool isDamageable()
     {
+        // Default false
         return false;
     }
-    virtual void takeDamage();
+    virtual void takeDamage(); // Default: call unalive() if damageable
     virtual void bonk()
     {
+        // Default: do nothing
         return;
     }
     virtual void gainFlowerPower()
@@ -65,26 +73,32 @@ public:
     }
     virtual bool useFlowerPower()
     {
+        // Default false
         return false;
     }
     virtual bool useJumpPower()
     {
+        // Default false
         return false;
     }
     virtual bool useStarPower()
     {
+        // Default false
         return false;
     }
     void unalive()
     {
+        // Default false
         m_isAlive = false;
     }
     void reverseDirection();
 private:
-    StudentWorld* m_studentWorldPtr;
+    StudentWorld* m_studentWorld;
     bool m_isAlive;
-    bool m_hasTakenDmg;
+    bool m_isDamaged;
 };
+
+// Peach Declarations
 
 class Peach: public Actor {
 public:
@@ -122,9 +136,11 @@ private:
     bool hasFlowerPower;
     bool hasJumpPower;
     bool hasStarPower;
-    int numHitPoints;
+    int hitPoints;
     int tempInvincibility;
 };
+
+// Enemy Declarations
 
 class Enemy: public Actor
 {
@@ -135,6 +151,7 @@ public:
     virtual void doSomething() = 0;
     virtual bool canMove()
     {
+        // Default true
         return true;
     }
     virtual bool isDamageable()
@@ -147,6 +164,8 @@ public:
 private:
 };
 
+// Goomba Declarations
+
 class Goomba: public Enemy
 {
 public:
@@ -156,6 +175,8 @@ public:
     virtual void doSomething();
 private:
 };
+
+// Koopa Declarations
 
 class Koopa: public Enemy
 {
@@ -167,6 +188,8 @@ public:
     virtual void takeDamage();
 private:
 };
+
+// Piranha Declarations
 
 class Piranha: public Enemy
 {
@@ -182,19 +205,24 @@ private:
     int firing_delay;
 };
 
+// Terrain Declarations
+
 class Terrain: public Actor
 {
 public:
     Terrain(int imageID, int startX, int startY, StudentWorld* studentWorldPtr);
     virtual ~Terrain() {}
+    // Keep terrain abstract since Pipe and Block have the same implementation
     virtual void doSomething() = 0;
-    virtual bool canBeOverlappedWith()
+    virtual bool Overlappable()
     {
         return false;
     }
     virtual void bonk();
 private:
 };
+
+// Block Declarations
 
 class Block: public Terrain
         {
@@ -208,8 +236,10 @@ public:
     virtual void bonk();
 private:
     int m_hasGoodieType;
-    bool m_hadGoodieReleased;
+    bool m_GoodieReleased;
 };
+
+// Pipe Declarations
 
 class Pipe: public Terrain
 {
@@ -223,6 +253,8 @@ public:
 private:
 };
 
+// Goal Declarations
+
 class Goal: public Actor
 {
 public:
@@ -232,6 +264,8 @@ public:
     virtual void doSomething() = 0;
 private:
 };
+
+// Flag Declarations
 
 class Flag: public Goal
 {
@@ -243,6 +277,8 @@ public:
 private:
 };
 
+// Mario Declarations
+
 class Mario: public Goal
 {
 public:
@@ -252,6 +288,8 @@ public:
     virtual void doSomething();
 private:
 };
+
+// Goodie Declarations
 
 class Goodie: public Actor
 {
@@ -264,6 +302,8 @@ public:
 private:
 };
 
+// Flower Declarations
+
 class Flower: public Goodie
 {
 public:
@@ -273,6 +313,8 @@ public:
     virtual void doOwnThing();
 private:
 };
+
+// Mushroom Declarations
 
 class Mushroom: public Goodie
 {
@@ -284,6 +326,8 @@ public:
 private:
 };
 
+// Star Declarations
+
 class Star: public Goodie
 {
 public:
@@ -294,6 +338,8 @@ public:
 private:
 };
 
+// Projectile Declarations
+
 class Projectile: public Actor
 {
 public:
@@ -301,10 +347,13 @@ public:
     virtual ~Projectile()
     {}
     virtual void doSomething();
+    // Pure virtual to keep Projectile abstract, since Shell and PeachFireball have the same implementation
     virtual bool hitTarget() = 0;
     void move();
 private:
 };
+
+// Shell Declarations
 
 class Shell: public Projectile
 {
@@ -316,6 +365,8 @@ public:
 private:
 };
 
+// PeachFireball Declarations
+
 class PeachFireball: public Projectile
 {
 public:
@@ -325,6 +376,8 @@ public:
     bool hitTarget();
 private:
 };
+
+// PiranhaFireball Declarations
 
 class PiranhaFireball: public Projectile
 {

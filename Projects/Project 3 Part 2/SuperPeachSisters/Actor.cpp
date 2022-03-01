@@ -8,8 +8,10 @@
 #include "StudentWorld.h"
 using namespace std;
 
-Actor::Actor(int imageID, int startX, int startY, int startDirection, int depth, StudentWorld* studentWorldPtr)
-        : GraphObject(imageID, startX, startY, startDirection, depth, 1.0), m_studentWorldPtr(studentWorldPtr), m_isAlive(true), m_hasTakenDmg(false)
+// Actor Implementations
+
+Actor::Actor(int imageID, int startX, int startY, int startDirection, int depth, StudentWorld* studentWorld)
+        : GraphObject(imageID, startX, startY, startDirection, depth, 1.0), m_studentWorld(studentWorld), m_isAlive(true), m_isDamaged(false)
 {
     if (startX < 0 || startX > VIEW_WIDTH - 1)
     {
@@ -35,32 +37,39 @@ void Actor::reverseDirection()
     setDirection(getDirection() + 180);
 }
 
+// Peach Implementations
+
 Peach::Peach(int startX, int startY, StudentWorld* studentWorldPtr)
         : Actor(IID_PEACH, startX, startY, 0, 0, studentWorldPtr), jumpDistanceLeft(0),
           rechargeTime(0), hasFlowerPower(false), hasJumpPower(false),
-          hasStarPower(false), numHitPoints(1), tempInvincibility(0)
+          hasStarPower(false), hitPoints(1), tempInvincibility(0)
 {}
 
 void Peach::doSomething()
 {
     if (!isAlive())
     {
+        // Return if not alive
         return;
     }
 
     if (tempInvincibility > 0)
     {
+        // Decrement temporary invincibility game ticks
         tempInvincibility--;
     }
-    else {
+    else
+    {
         hasStarPower = false;
     }
 
     if (rechargeTime > 0)
     {
+        // Decrement recharge timer
         rechargeTime--;
     }
 
+    // Bonk overlapping objects
     getWorld()->bonkObjectsAt(getX(), getY());
 
     if (jumpDistanceLeft > 0)
@@ -77,7 +86,8 @@ void Peach::doSomething()
             jumpDistanceLeft--;
         }
     }
-    else {
+    else
+    {
         if (getWorld()->isBlockingObjectAt(getX(), getY() - PEACH_STEP) == false)
         {
             moveTo(getX(), getY() - PEACH_STEP);
@@ -85,6 +95,7 @@ void Peach::doSomething()
     }
 
     int keyPressed;
+    // Check pressed key
     if (getWorld()->getKey(keyPressed))
     {
         int potentialX;
@@ -93,17 +104,20 @@ void Peach::doSomething()
             case KEY_PRESS_LEFT:
                 setDirection(180);
                 potentialX = getX() - PEACH_STEP;
+                // Bonk if blocked, move if not
                 if (getWorld()->isBlockingObjectAt(potentialX, getY()) == false)
                 {
                     moveTo(potentialX, getY());
                 }
-                else {
+                else
+                {
                     getWorld()->bonkObjectsAt(potentialX, getY());
                 }
                 break;
             case KEY_PRESS_RIGHT:
                 setDirection(0);
                 potentialX = getX() + PEACH_STEP;
+                // Bonk if blocked, move if not
                 if (getWorld()->isBlockingObjectAt(potentialX, getY()) == false)
                 {
                     moveTo(potentialX, getY());
@@ -117,11 +131,11 @@ void Peach::doSomething()
                 {
                     if (useJumpPower() == false)
                     {
-                        jumpDistanceLeft = 2*PEACH_STEP;
+                        jumpDistanceLeft = 2 * PEACH_STEP;
                     }
                     else
                     {
-                        jumpDistanceLeft = 3*PEACH_STEP;
+                        jumpDistanceLeft = 3 * PEACH_STEP;
                     }
                     getWorld()->playSound(SOUND_PLAYER_JUMP);
                 }
@@ -147,13 +161,13 @@ void Peach::doSomething()
 void Peach::gainFlowerPower()
 {
     hasFlowerPower = true;
-    numHitPoints = 2;
+    hitPoints = 2;
 }
 
 void Peach::gainJumpPower()
 {
     hasJumpPower = true;
-    numHitPoints = 2;
+    hitPoints = 2;
 }
 
 void Peach::gainStarPower()
@@ -171,10 +185,13 @@ void Peach::bonk()
 {
     if (tempInvincibility > 0)
     {
+        // Do nothing if invincible
         return;
     }
 
-    numHitPoints--;
+    // Decrement health
+    hitPoints--;
+    // Set temporary invincibility ticks
     tempInvincibility = 10;
     if (hasFlowerPower)
     {
@@ -185,7 +202,8 @@ void Peach::bonk()
         hasJumpPower = false;
     }
 
-    if (numHitPoints >= 1)
+    // Check if dead or hurt
+    if (hitPoints >= 1)
     {
         getWorld()->playSound(SOUND_PLAYER_HURT);
     }
@@ -194,6 +212,8 @@ void Peach::bonk()
         unalive();
     }
 }
+
+// Enemy Implementations
 
 Enemy::Enemy(int imageID, int startX, int startY, StudentWorld* studentWorldPtr)
         : Actor(imageID, startX, startY, 0, 0, studentWorldPtr)
@@ -246,6 +266,8 @@ Goomba::Goomba(int startX, int startY, StudentWorld* studentWorldPtr)
         : Enemy(IID_GOOMBA, startX, startY, studentWorldPtr)
 {}
 
+// Goomba Implementations
+
 void Goomba::doSomething()
 {
     if (!isAlive())
@@ -253,14 +275,17 @@ void Goomba::doSomething()
         return;
     }
 
-    if (getWorld()->isOverlappingWithPeach(getX(), getY()))
+    if (getWorld()->overlapsWithPeach(getX(), getY()))
     {
+        // Check overlap with Peach
         getWorld()->getPeach()->bonk();
         return;
     }
 
     move();
 }
+
+// Koopa Implementations
 
 Koopa::Koopa(int startX, int startY, StudentWorld* studentWorldPtr)
         : Enemy(IID_KOOPA, startX, startY, studentWorldPtr)
@@ -273,7 +298,8 @@ void Koopa::doSomething()
         return;
     }
 
-    if (getWorld()->isOverlappingWithPeach(getX(), getY()))
+    // Check overlap with Peach
+    if (getWorld()->overlapsWithPeach(getX(), getY()))
     {
         getWorld()->getPeach()->bonk();
         return;
@@ -289,6 +315,8 @@ void Koopa::takeDamage()
     getWorld()->addActor(new Shell(getX(), getY(), getDirection(), getWorld()));
 }
 
+// Piranha Implementations
+
 Piranha::Piranha(int startX, int startY, StudentWorld* studentWorldPtr)
         : Enemy(IID_PIRANHA, startX, startY, studentWorldPtr), firing_delay(0)
 {}
@@ -302,13 +330,14 @@ void Piranha::doSomething()
 
     increaseAnimationNumber();
 
-    if (getWorld()->isOverlappingWithPeach(getX(), getY()))
+    // Check overlap with Peach
+    if (getWorld()->overlapsWithPeach(getX(), getY()))
     {
         getWorld()->getPeach()->bonk();
         return;
     }
 
-    if (getWorld()->isOverlappingWithPeach(getX(), getY()))
+    if (getWorld()->overlapsWithPeach(getX(), getY()))
     {
         return;
     }
@@ -323,6 +352,7 @@ void Piranha::doSomething()
         return;
     }
 
+    // Set direction based on Peach's x-coordinate
     if (getX() > getWorld()->getPeach()->getX())
     {
         setDirection(180);
@@ -334,6 +364,7 @@ void Piranha::doSomething()
 
     if (firing_delay > 0)
     {
+        // Decrement firing delay
         firing_delay--;
         return;
     }
@@ -345,6 +376,7 @@ void Piranha::doSomething()
         {
             diffX *= -1;
         }
+        // Fire if Peach is less than 8 sprite widths away
         if (diffX < 8 * SPRITE_WIDTH)
         {
             getWorld()->addActor(new PiranhaFireball(getX(), getY(), getDirection(), getWorld()));
@@ -353,6 +385,8 @@ void Piranha::doSomething()
         }
     }
 }
+
+// Terrain Implementations
 
 Terrain::Terrain(int imageID, int startX, int startY, StudentWorld* studentWorldPtr)
         : Actor(imageID, startX, startY, 0, 2, studentWorldPtr)
@@ -363,14 +397,17 @@ void Terrain::bonk()
     getWorld()->playSound(SOUND_PLAYER_BONK);
 }
 
+// Block Implementations
+
 Block::Block(int startX, int startY, StudentWorld* studentWorldPtr, int hasGoodieType)
-        : Terrain(IID_BLOCK, startX, startY, studentWorldPtr), m_hasGoodieType(hasGoodieType), m_hadGoodieReleased(false)
+        : Terrain(IID_BLOCK, startX, startY, studentWorldPtr), m_hasGoodieType(hasGoodieType), m_GoodieReleased(false)
 {}
 
 void Block::bonk()
 {
-    if (m_hasGoodieType == NO_GOODIE || m_hadGoodieReleased)
+    if (m_hasGoodieType == NO_GOODIE || m_GoodieReleased)
     {
+        // Play the bonk sound if no goodie, or already released
         getWorld()->playSound(SOUND_PLAYER_BONK);
         return;
     }
@@ -379,6 +416,8 @@ void Block::bonk()
         getWorld()->playSound(SOUND_POWERUP_APPEARS);
         switch (m_hasGoodieType)
         {
+            // Introduce goodie, and mark the block as already bonked
+            
             case FLOWER_GOODIE:
                 getWorld()->addActor(new Flower(getX(), getY() + SPRITE_HEIGHT, getWorld()));
                 break;
@@ -389,17 +428,23 @@ void Block::bonk()
                 getWorld()->addActor(new Star(getX(), getY() + SPRITE_HEIGHT, getWorld()));
                 break;
         }
-        m_hadGoodieReleased = true;
+        m_GoodieReleased = true;
     }
 }
+
+// Pipe Implementations
 
 Pipe::Pipe(int startX, int startY, StudentWorld* studentWorldPtr)
         : Terrain(IID_PIPE, startX, startY, studentWorldPtr)
 {}
 
+// Goal Implementations
+
 Goal::Goal(int imageID, int startX, int startY, StudentWorld* studentWorldPtr)
         : Actor(imageID, startX, startY, 0, 1, studentWorldPtr)
 {}
+
+// Flag Implementations
 
 Flag::Flag(int startX, int startY, StudentWorld* studentWorldPtr)
         :Goal(IID_FLAG, startX, startY, studentWorldPtr)
@@ -409,14 +454,18 @@ void Flag::doSomething()
 {
     if (isAlive() == false)
     {
+        // Do nothing if dead
         return;
     }
-    if (getWorld()->isOverlappingWithPeach(getX(), getY()))
+    if (getWorld()->overlapsWithPeach(getX(), getY()))
     {
+        // Check overlap with peach
         unalive();
         getWorld()->levelCompleted();
     }
 }
+
+// Mario Implementations
 
 Mario::Mario(int startX, int startY, StudentWorld* studentWorldPtr)
         : Goal(IID_MARIO, startX, startY, studentWorldPtr)
@@ -428,12 +477,14 @@ void Mario::doSomething()
     {
         return;
     }
-    if (getWorld()->isOverlappingWithPeach(getX(), getY()))
+    if (getWorld()->overlapsWithPeach(getX(), getY()))
     {
         unalive();
         getWorld()->gameWon();
     }
 }
+
+// Goodie Implementations
 
 Goodie::Goodie(int imageID, int startX, int startY, StudentWorld* studentWorldPtr)
         : Actor(imageID, startX, startY, 0, 1, studentWorldPtr)
@@ -446,7 +497,7 @@ void Goodie::doSomething()
         return;
     }
 
-    if (getWorld()->isOverlappingWithPeach(getX(), getY()))
+    if (getWorld()->overlapsWithPeach(getX(), getY()))
     {
         doOwnThing();
 
@@ -472,6 +523,8 @@ void Goodie::doSomething()
     }
 }
 
+// Flower Implementations
+
 Flower::Flower(int startX, int startY, StudentWorld* studentWorldPtr)
         : Goodie(IID_FLOWER, startX, startY, studentWorldPtr)
 {}
@@ -481,6 +534,8 @@ void Flower::doOwnThing()
     getWorld()->getPeach()->gainFlowerPower();
     getWorld()->increaseScore(50);
 }
+
+// Mushroom Implementations
 
 Mushroom::Mushroom(int startX, int startY, StudentWorld* studentWorldPtr)
         : Goodie(IID_MUSHROOM, startX, startY, studentWorldPtr)
@@ -492,6 +547,8 @@ void Mushroom::doOwnThing()
     getWorld()->increaseScore(75);
 }
 
+// Star Implementations
+
 Star::Star(int startX, int startY, StudentWorld* studentWorldPtr)
         : Goodie(IID_STAR, startX, startY, studentWorldPtr)
 {}
@@ -501,6 +558,8 @@ void Star::doOwnThing()
     getWorld()->getPeach()->gainStarPower();
     getWorld()->increaseScore(100);
 }
+
+// Projectile Implementations
 
 Projectile::Projectile(int imageID, int startX, int startY, int startDirection, StudentWorld* studentWorldPtr)
         : Actor(imageID, startX, startY, startDirection, 1, studentWorldPtr)
@@ -534,14 +593,18 @@ void Projectile::move()
     }
 }
 
+// Shell Implementations
+
 Shell::Shell(int startX, int startY, int startDirection, StudentWorld* studentWorldPtr)
         : Projectile(IID_SHELL, startX, startY, startDirection, studentWorldPtr)
 {}
 
 bool Shell::hitTarget()
 {
-    return getWorld()->isOverlappingWithEnemy(getX(), getY());
+    return getWorld()->overlapsWithEnemy(getX(), getY());
 }
+
+// PeachFireball Implementations
 
 PeachFireball::PeachFireball(int startX, int startY, int startDirection, StudentWorld* studentWorldPtr)
         : Projectile(IID_PEACH_FIRE, startX, startY, startDirection, studentWorldPtr)
@@ -549,8 +612,10 @@ PeachFireball::PeachFireball(int startX, int startY, int startDirection, Student
 
 bool PeachFireball::hitTarget()
 {
-    return getWorld()->isOverlappingWithEnemy(getX(), getY());
+    return getWorld()->overlapsWithEnemy(getX(), getY());
 }
+
+// PiranhaFireball Implementations
 
 PiranhaFireball::PiranhaFireball(int startX, int startY, int startDirection, StudentWorld* studentWorldPtr)
         : Projectile(IID_PIRANHA_FIRE, startX, startY, startDirection, studentWorldPtr)
@@ -558,7 +623,7 @@ PiranhaFireball::PiranhaFireball(int startX, int startY, int startDirection, Stu
 
 bool PiranhaFireball::hitTarget()
 {
-    if (getWorld()->isOverlappingWithPeach(getX(), getY()))
+    if (getWorld()->overlapsWithPeach(getX(), getY()))
     {
         getWorld()->getPeach()->takeDamage();
         return true;
