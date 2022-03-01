@@ -4,3 +4,376 @@
 // report.txt
 //
 
+Problem 1
+
+// Actor.h
+
+// Actor Base Class
+
+    virtual void doSomething() = 0;
+    This function is a pure virtual function, since every actor needs to return something
+    going through the vector and calling this function.
+
+    StudentWorld* getWorld()
+    {
+        return m_studentWorld;
+    }
+    This function helps other classes obtain public member functions from the game's world.
+    Every actor, regardless of its type, is in a world (StudentWorld).
+    This method is never overridden for obvious reasons.
+
+    bool isAlive()
+    {
+        return m_isAlive;
+    }
+    This function can be used by any derived classes, as the functionality remains same for
+    all derived classes.
+
+    virtual bool Overlappable()
+    {
+        // Default true
+        return true;
+    }
+
+    virtual bool isPlayerControlled()
+    {
+        // Default false
+        return false;
+    }
+
+    virtual bool isDamageable()
+    {
+        // Default false
+        return false;
+    }
+
+    virtual void takeDamage();
+
+    This function calls unalive() if damageable.
+
+    virtual void bonk()
+    {
+        // Default: do nothing
+        return;
+    }
+    This function can be used by any of the derived classes that do nothing when damaged.
+    It can be redefined for bonked actors and overriden in subclasses for specific functionality.
+
+    void unalive()
+    {
+        // Default false
+        m_isAlive = false;
+    }
+    This function sets the actor to not alive. Made virtual due to the override in the Koopa class,
+    where it turns into a Shell upon dying.
+
+    void reverseDirection();
+    Simple helper function that reverses the direction of the actor for which it is called.
+
+// Class Peach - Derived from Actor
+
+    virtual bool isPlayerControlled()
+    {
+        return true;
+    }
+
+    virtual bool isDamageable()
+    {
+        return true;
+    }
+
+    virtual void doSomething();
+    This function is a pure virtual in the base class, and it must be defined. In case a derived class does
+    not call its own doSomething, the base class' doSomething will be implemented.
+
+    virtual void gainFlowerPower();
+    This function is a getter/setter for Peach's member variables that control the powers she gets,
+    or whether or not she has enough health to continue.
+
+    virtual void gainJumpPower();
+    This function is a getter/setter for Peach's member variables that control the powers she gets,
+    or whether or not she has enough health to continue.
+
+    virtual void gainStarPower();
+    This function is a getter/setter for Peach's member variables that control the powers she gets,
+    or whether or not she has enough health to continue.
+
+    virtual bool useFlowerPower()
+    {
+        return hasFlowerPower;
+    }
+    This function is a getter/setter for Peach's member variables that control the powers she gets,
+    or whether or not she has enough health to continue.
+
+    virtual bool useJumpPower()
+    {
+        return hasJumpPower;
+    }
+    This function is a getter/setter for Peach's member variables that control the powers she gets,
+    or whether or not she has enough health to continue.
+
+    virtual bool useStarPower()
+    {
+        return hasStarPower;
+    }
+    This function is a getter/setter for Peach's member variables that control the powers she gets,
+    or whether or not she has enough health to continue.
+
+    virtual void takeDamage();
+
+    virtual void bonk();
+
+// Class Enemy - Derived from Actor
+
+    virtual void doSomething() = 0;
+    This function is a pure virtual function, since every Enemy needs to return something
+    going through the vector and calling this function.
+    Enemies can cause damage to peach. This method dictates how enemies should move and bonk
+    peach when they overlap. Made virtual because it is overridden in subclasses.
+
+    virtual bool canMove()
+    {
+        // Default true
+        return true;
+    }
+    This function is used to determine if an enemy derived class can move. It is virtual
+
+    virtual bool isDamageable()
+    {
+        return true;
+    }
+    This function is used to identify if any derived Enemy classes can be damaged. This is included
+    to avoid the derived classes from calling Actor's isDamageable (which says it is not an enemy).
+    It is used for ID.
+
+    virtual void takeDamage();
+    This function is used to increment the player's score by 100 if an enemy element takes damage, and
+    then call unalive() on the enemy. Virtual since it is overriden in subclasses.
+
+    void move();
+    This function assists the enemy with movement. If the element cannot move (eg. piranha), it leaves
+    the function. Otherwise, the enemy moves based on double type coordinates, that rely on ENEMY_STEP
+    and SPRITE_WIDTH.
+
+    void bonk();
+    This function causes the enemy element to take damage and play the bonk sound.
+    Made virtual only to mark that this method has been derived from a superclass.
+
+// Class Goomba - Derived from Enemy
+
+    virtual void doSomething();
+    This function is a pure virtual in the base class, and it must be defined. In case a derived class does
+    not call its own doSomething, the base class' doSomething will be implemented.
+
+// Class Koopa - Derived from Enemy
+
+    virtual void doSomething();
+    This function is a pure virtual in the base class, and it must be defined. In case a derived class does
+    not call its own doSomething, the base class' doSomething will be implemented.
+
+// Class Piranha - Derived from Enemy
+
+    virtual void doSomething();
+    This function is a pure virtual in the base class, and it must be defined. In case a derived class does
+    not call its own doSomething, the base class' doSomething will be implemented.
+
+    virtual bool canMove()
+    {
+        return false;
+    }
+
+// Class Terrain - Derived from Actor
+
+    virtual void doSomething() = 0;
+    This function is a pure virtual function, since every Terrain needs to return something
+    going through the vector and calling this function.
+
+    virtual bool Overlappable()
+    {
+        return false;
+    }
+
+    virtual void bonk();
+    Overridden from Actor to do nothing. Made virtual because it will be overridden in the Block
+    subclass, where some blocks may have Goodies.
+
+// Class Block - Derived from Terrain
+
+    virtual void doSomething()
+    {
+        return;
+    }
+    This function is a pure virtual in the base class, and it must be defined. In case a derived class does
+    not call its own doSomething, the base class' doSomething will be implemented.
+
+    virtual void bonk();
+    To introduce a new Goodie (mushroom, flower, or star) into the game. Virtual only to mark that
+    this method has been derived from a superclass.
+
+// Class Pipe - Derived from Terrain
+
+    virtual void doSomething()
+    {
+        return;
+    }
+    This function is a pure virtual in the base class, and it must be defined. In case a derived class does
+    not call its own doSomething, the base class' doSomething will be implemented.
+
+    virtual void bonk();
+    Do nothing. Virtual only to mark that this method has been derived from a superclass
+
+// Class Goal - Derived from Actor
+
+    virtual void doSomething() = 0;
+    This function is a pure virtual function, since every Goal needs to return something
+    going through the vector and calling this function.
+
+// Class Flag - Derived from Goal
+
+    virtual void doSomething();
+    This function is a pure virtual in the base class, and it must be defined. In case a derived class does
+    not call its own doSomething, the base class' doSomething will be implemented.
+
+// Class Mario - Derived from Goal
+
+    virtual void doSomething();
+    This function is a pure virtual in the base class, and it must be defined. In case a derived class does
+    not call its own doSomething, the base class' doSomething will be implemented.
+
+// Class Goodie - Derived from Actor
+
+    virtual void doSomething();
+    All Goodies give Peach power, award points on collection, and move in the same way. This
+    method dictates how Goodies should behave. Made virtual only to mark that this method has
+    been derived from a superclass.
+
+// Class Flower - Derived from Goodie
+
+    virtual void doOwnThing();
+    This function defines a flower's unique behaviour and differentiates it from the rest of the
+    actors, since they were defined from the Actor base class. Uses polymorphism. Made virtual
+    only to mark that this method has been derived from a superclass.
+
+// Class Mushroom - Derived from Goodie
+
+    virtual void doOwnThing();
+    This function defines a mushroom's unique behaviour and differentiates it from the rest of the
+    actors, since they were defined from the Actor base class. Uses polymorphism. Made virtual
+    only to mark that this method has been derived from a superclass.
+
+// Class Star - Derived from Goodie
+
+    virtual void doOwnThing();
+    This function defines a star's unique behaviour and differentiates it from the rest of the
+    actors, since they were defined from the Actor base class. Uses polymorphism. Made virtual
+    only to mark that this method has been derived from a superclass.
+
+// Class Projectile - Derived from Actor
+
+    virtual void doSomething();
+    A projectile continues moving until it hits an actor (of pertinent type). For example, a peach
+    fireball can dissipate on hitting a wall or cause damage to an enemy. This method mainly directs
+    the movement of projectiles and checks the objects they encounter. Made virtual because it is
+    overridden in subclasses.
+
+    virtual bool hitTarget() = 0;
+    This function is virtual to keep Projectile abstract, since it is override in PiranhaFireball.
+
+    void move();
+    This function assists the projectile with movement. The projectile  moves based on double type
+    coordinates, that relies on PROJECTILE_STEP.
+
+// Class Shell - Derived from Projectile
+
+   This is used to display a moving green shell every time a koopa dies.
+
+// Class PeachFireball - Derived from Projectile
+
+// Class PiranhaFireball - Derived from Projectile
+
+    virtual void doSomething();
+    Overrides Projectile’s doSomething method since a PiranhaFireball behaves differently. Made
+    virtual only to mark that this method has been derived from a superclass.
+
+// StudentWorld.h
+
+    The following three functions were defined here since they were required by the provided framework.
+
+    virtual int init();
+    This function initializes each level - game start, new level, restart level.
+
+    virtual int move();
+    20x per second, update game actors, introduce new actors, delete actors
+
+    virtual void cleanUp();
+    Current level, loses a life, frees all actors
+
+    Actor* getPeach();
+    This function initializes the Peach object during the parsing of the level data.
+
+    bool isBlockingObjectAt(int x, int y);
+    Using x and y as input coordinates, this function returns a boolean with getWorld()
+    indicating the blocked status of an object.
+
+    bool overlapsWithPeach(int x, int y);
+    Using x and y as input coordinates, this function returns a boolean indicating
+    whether an Actor overlaps with Peach.
+
+    bool overlapsWithEnemy(int x, int y);
+    Using x and y as input coordinates, this function returns a boolean indicating
+    whether an Actor overlaps with an Enemy.
+
+    void bonkObjectsAt(int x, int y);
+    This function is used to bonk object at coordinates (x, y).
+
+    void addActor(Actor* actor);
+    This function is used to add an actor based on a certain condition that is met during the game.
+
+    void gameWon();
+    This function is used to signify that the game has been won.
+
+    void levelCompleted();
+    This function is used to signify that the current level has been completed.
+
+// Problem 2
+
+As far as I understand, I've managed to implement all functionality as required by the
+specification document. However, a certain pain point (based on an Ubuntu 20.04) was that beta-testing
+the program for sounds was extensively difficult. It involved procuring a different laptop and
+installing/running files + freeGLUT on that and then debugging accordingly.
+
+// Problem 3
+
+Program Design
+
+GraphObject
+    Actor
+        Peach
+        Enemy
+            Goomba
+            Koopa
+            Piranha
+        Terrain
+            Block
+            Pipe
+        Goal
+            Flag
+            Mario
+        Goodie
+            Flower
+            Mushroom
+            Star
+        Projectile
+            Shell
+            PeachFireball
+            PiranhaFireball
+
+I understood that many elements had near-similar functionality (for instance, Mario and Flag only
+differed in the sense that one moves to the next level, while the other ends the game), and that
+reduced the work input a lot.
+
+It was not specified how to check whether Koopa, Goomba, or Piranha were being bonked by peach, so I
+initially used a friend class Peach statement and made bonk private so only peach could call bonk for
+those classes. However, not knowing if the friend keyword was allowed, I changed the functions to
+check if the actors were overlapping with peach and only perform the action if that was the case.
+Otherwise, do nothing.
