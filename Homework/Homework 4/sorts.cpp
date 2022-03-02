@@ -142,7 +142,6 @@ void insertion_sort(vector<Store>& s, bool comp(const Store&, const Store&))
 
     if (s.size() <= 1)
         return;
-    vector<Store>::iterator it;
     for (int i = 1; i < s.size(); i++)
     {
         Store next = s[i];
