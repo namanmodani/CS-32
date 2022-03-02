@@ -11,6 +11,25 @@ Problem 2
     the key is of type Coord and the Coord class doesn't define those two operators, the compiler
     has no idea how to compare two Coord keys. This forces a compilation error.
 
+Problem 5
+
+    5A
+
+        The time complexity is O(N^3) because the three nested for loops with iterating variables
+        i, j, and k all run N times. The operations performed in the innermost loop is an if
+        statement comparing two boolean variables, making it an O(1) operation. This results in
+        the total time complexity being O(N) * O(N) * O(N) * O(1) = O(N^3)
+
+    5B
+
+        The innermost loop still has a complexity of O(N^3), since the loop runs an if comparison
+        of two booleans - an O(1) operation - N times. For the outermost and middle for loops,
+        they would be running the innermost loop a total of 0 + 1 + ... + (N - 1) times, which
+        has a time complexity of O(N^2). Although j goes from 0 to (i - 1) and not 0 to (N - 1),
+        the maximum possible iteration count of the loop with j is N. The algorithm would be
+        running an O(N) operation O(N^2) times, making the total time complexity O(N) * O(N^2) =
+        O(N^3).
+
 Problem 6
 
     6A
