@@ -70,8 +70,3 @@ Problem 6
         the number of nodes, the 6A algorithm increases runtime exponentially, while this algorithm
         increases runtime linearly. This means that no matter how much higher the baseline overhead
         of this function is than 6A - eventually, as N increases, this algorithm will perform faster.
-
-
-
-
-
