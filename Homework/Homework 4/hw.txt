@@ -11,6 +11,26 @@ Problem 2
     the key is of type Coord and the Coord class doesn't define those two operators, the compiler
     has no idea how to compare two Coord keys. This forces a compilation error.
 
+Problem 3
+
+    3E
+
+    During the execution of test case 3, the vector is reallocated to a larger array when k == 2,
+    since there is a push_back call when the vector is already at full capacity. After this
+    reallocation, the iterator no longer points to an address in memory that is part of the vector,
+    thereby invalidating the iterator and attempting to deference. This causes the return of
+    incorrect values, causing the test case to fail.
+
+Problem 4
+
+    4B
+
+        The problem could not be solved with the one parameter overload listAll being implemented
+        recursively. This is because there would be no way to transmit string data built up by
+        previous iterations of recursive calls. The only data that could be accessed would be
+        the data held by the class object pointer "c" passed in as a parameter. However, that
+        would defeat the purpose of a recursive solution in the first place.
+
 Problem 5
 
     5A
