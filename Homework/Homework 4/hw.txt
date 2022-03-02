@@ -3,3 +3,36 @@
 // Naman Modani
 // hw.txt
 //
+
+Problem 2
+
+    The insert function calls and returns the doInsertOrUpdate and the findFirstAtLast functions,
+    which use the "<" and "==" operators to compare the key that was input to the function. Since
+    the key is of type Coord and the Coord class doesn't define those two operators, the compiler
+    has no idea how to compare two Coord keys. This forces a compilation error.
+
+Problem 6
+
+    6A
+
+        In terms of the number of linked list nodes visited during the execution of this function
+        alone, the time complexity would be O(N) since each node in "m" gets copied to "res," and
+        there are N node in "m." Taking into account the fact that the get() function has a O(N)
+        complexity, the function is bounded by a maximum of N/2 nodes visited. This is proportional
+        to N make the function O(N). Therefore - since an O(N) function is performed O(N) times,
+        and all other functions have a O(1) complexity - the total time complexity of the reassign
+        function would be O(N^2).
+
+    6B
+
+        The function has a time complexity of O(N), because N nodes are visited and each has an
+        O(1) operation performed - the O(1) operation being the reassignment of the node's
+        member variable. This implementation is better than the one in 6A, since upon incrementing
+        the number of nodes, the 6A algorithm increases runtime exponentially, while this algorithm
+        increases runtime linearly. This means that no matter how much higher the baseline overhead
+        of this function is than 6A - eventually, as N increases, this algorithm will perform faster.
+
+
+
+
+
