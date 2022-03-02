@@ -15,11 +15,11 @@ Problem 3
 
     3E
 
-    During the execution of test case 3, the vector is reallocated to a larger array when k == 2,
-    since there is a push_back call when the vector is already at full capacity. After this
-    reallocation, the iterator no longer points to an address in memory that is part of the vector,
-    thereby invalidating the iterator and attempting to deference. This causes the return of
-    incorrect values, causing the test case to fail.
+        During the execution of test case 3, the vector is reallocated to a larger array when k == 2,
+        since there is a push_back call when the vector is already at full capacity. After this
+        reallocation, the iterator no longer points to an address in memory that is part of the vector,
+        thereby invalidating the iterator and attempting to deference. This causes the return of
+        incorrect values, causing the test case to fail.
 
 Problem 4
 
