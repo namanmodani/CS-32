@@ -1,0 +1,45 @@
+//
+// CS 32 Homework 5
+// Naman Modani
+// hw.txt
+//
+
+Problem 1
+
+    1A
+
+    1B
+
+    1C
+
+Problem 2
+
+    2A
+
+    2B
+
+Problem 3
+
+    3A
+
+    3B
+
+    3C
+
+Problem 4
+
+    4A
+
+    4B
+
+    4C
+
+    4D
+
+    4E
+
+    4F
+
+    4G
+
+    4H
