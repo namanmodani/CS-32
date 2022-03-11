@@ -44,7 +44,39 @@ Problem 2
 
     2A
 
+        struct Node
+        {
+            Node* parent;
+            Node* leftChild;
+            Node* rightChild;
+            int value;
+        };
+
     2B
+
+        Pseudocode
+
+            insert(insertNode):
+                if the tree is empty:
+                    mark insertNode as the root node
+                    set insertNode's parent to nullptr
+                    return
+                current node = root node
+                while true:
+                    if insertNode's value is less than or equal to current node's value
+                        if current node has a left child:
+                            current node = current node's left child
+                        else:
+                            mark insertNode as current node's left child
+                            set insertNode's parent to current node
+                            return
+                    else:
+                        if current node has a right child:
+                            current node = current node's right child
+                        else:
+                            mark insertNode as current node's right child
+                            set insertNode's parent to current node
+                            return
 
 Problem 3
 
@@ -103,5 +135,3 @@ Problem 4
     4H
         unordered_map<string, set<int>>
         O(C log S)
-
-
