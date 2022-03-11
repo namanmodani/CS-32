@@ -1,48 +1,0 @@
-
-var ftGUID_5982781="51825810621E53";
-var ftConfID_5982781="26831965";
-var ftParams_5982781="ft_custom=26456962_2285918_313855351_159322420____ABAjH0hAcyQdPorv-qiWlG2a9IKD&ftOBA=1&ft_domain=quizlet.com&ft_ifb=1&ft_agentEnv=0&ft_referrer=https%3A%2F%2Fquizlet.com%2F&us_privacy=${US_PRIVACY}&cachebuster=116996.73699787616";
-var ftKeyword_5982781="";
-var ftCustom_5982781="26456962_2285918_313855351_159322420____ABAjH0hAcyQdPorv-qiWlG2a9IKD";
-var ftSection_5982781="";
-var ftSegment_5982781="";
-var ftSegmentList_5982781=[];
-var ftRuleMatch_5982781="0";
-var ftTimestamp_5982781="1646889578";
-var ftGeoC2_5982781="us";
-var ftGeoState_5982781="ca";
-var ftGeoCity_5982781="los angeles";
-var ftISP_5982781="university of california - office of the president";
-var ftSpeed_5982781="broadband";
-var ftDMA_5982781="803";
-var ftLong_5982781="-118.45";
-var ftLat_5982781="34.07";
-var ftPostal_5982781="90095";
-var ftTimeZone_5982781="-800";
-var ftMobileCarrier_5982781="";
-var ftImp5982781 = {};
-ftImp5982781.privacy = "x";
-ftImp5982781.guidAge = "-1";
-ftImp5982781.impID = "FCB89C23-803F-D3DE-FA7E-8ED0F8D47EED";
-ftImp5982781.duid = "FT:51825810621E53";
-
-ftImp5982781.ft_tpplid = "";
-ftImp5982781.ft_c = {};
-ftImp5982781.gdpr = "";
-ftImp5982781.gdpr_consent = "";
-ftImp5982781.gdpr_pd = "";
-ftImp5982781.oob_consent = "";
-ftImp5982781.gdprStoredConsent = "";
-ftImp5982781.us_privacy = "!!US_PRIVACY!";
-
-ftImp5982781.jsAppend = "1";
-(function(){
-    var tag = document.getElementById('ft_servedby_5982781') || (function(s){
-    	return s[s.length-1];
-    }(document.getElementsByTagName('script'))),
-           js = document.createElement('script');
-    js.src =
-"https://cdn.flashtalking.com/xre/598/5982781/3733205/js/j-5982781-3733205.js";
-    js.id = "ftscript_m5982781";
-    tag.parentNode.insertBefore(js, tag);
-}());
