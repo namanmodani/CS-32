@@ -8,7 +8,26 @@ Problem 1
 
     1A
 
+                                    50
+
+                    20                          60
+
+        10                     40                           70
+
+            15              30                      64              80
+
+                        23      36                              75
+
+
     1B
+
+        Traversals
+
+            Inorder
+
+            Preorder
+
+            Postorder
 
     1C
 
@@ -22,19 +41,19 @@ Problem 3
 
     3A
 
-                        9
+                        7
 
-                5               7
+                5               6
 
-            3       2       1       6
+            3       1       2
 
     3B
 
-    Heap in array form: [9, 5, 7, 3, 2, 1, 6]
+    Heap in array form: [7, 5, 6, 3, 1, 2]
 
     3C
 
-    Array remaining after executing h.remove(item);: [7, 5, 6, 3, 2, 1]
+    Array remaining after executing h.remove(item);: [6, 2, 5, 3, 1]
 
 Problem 4
 
@@ -69,3 +88,5 @@ Problem 4
     4H
         unordered_map<string, set<int>>
         O(C log S)
+
+
