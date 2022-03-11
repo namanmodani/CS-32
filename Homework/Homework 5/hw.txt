@@ -38,8 +38,22 @@ Problem 4
 
     4E
 
+        unordered_map<string, unordered_set<int>>
+
+        The outer unordered_map is a hash table. Therefore, in order to search the course c it would take constant
+        time O(1). Once we obtain the course and its unordered_set - which is another hash table - it would take
+        constant time O(1) to search the student s. All in all, the total time taken is 0(1), constant.
+
     4F
+
+        map<string, set<int>>
+
+        
 
     4G
 
+        unordered_map<string, unordered_set<int>>
+
     4H
+
+        unordered_map<string, set<int>>
