@@ -8,16 +8,15 @@ Problem 1
 
     1A
 
-                                    50
+                                50
 
-                    20                          60
+                    20                      60
 
-        10                     40                           70
+          10                  40                      70
 
-            15              30                      64              80
+                15        30                    64          80
 
-                        23      36                              75
-
+                        23   36                           75
 
     1B
 
@@ -30,6 +29,16 @@ Problem 1
             Postorder: 15, 10, 23, 36, 30, 40, 20, 64, 75, 80, 70, 60, 50
 
     1C
+
+                                50
+
+                    23                      60
+
+          10                  40                      70
+
+                15        36                    64          80
+
+                                                          75
 
 Problem 2
 
@@ -53,7 +62,13 @@ Problem 3
 
     3C
 
-    Array remaining after executing h.remove(item);: [6, 2, 5, 3, 1]
+                        6
+
+                5               2
+
+            3       1
+
+    Array remaining after executing h.remove(item);: [6, 5, 2, 3, 1]
 
 Problem 4
 
