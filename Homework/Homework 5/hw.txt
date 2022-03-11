@@ -29,31 +29,33 @@ Problem 3
 Problem 4
 
     4A
+        vector<pair<string, list<int>>>
+        O(C + S)
 
     4B
+        map<string, list<int>>
+        O(log C + S)
 
     4C
+        map<string, set<int>>
+        O(log C + log S)
 
     4D
+        unordered_map<string, set<int>>
+        O(log S)
 
     4E
-
         unordered_map<string, unordered_set<int>>
-
-        The outer unordered_map is a hash table. Therefore, in order to search the course c it would take constant
-        time O(1). Once we obtain the course and its unordered_set - which is another hash table - it would take
-        constant time O(1) to search the student s. All in all, the total time taken is 0(1), constant.
+        O(1)
 
     4F
-
         map<string, set<int>>
-
-        
+        O(log C + S)
 
     4G
-
         unordered_map<string, unordered_set<int>>
+        O(S log S)
 
     4H
-
         unordered_map<string, set<int>>
+        O(C log S)
