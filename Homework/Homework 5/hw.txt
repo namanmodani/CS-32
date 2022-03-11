@@ -22,9 +22,19 @@ Problem 3
 
     3A
 
+                        9
+
+                5               7
+
+            3       2       1       6
+
     3B
 
+    Heap in array form: [9, 5, 7, 3, 2, 1, 6]
+
     3C
+
+    Array remaining after executing h.remove(item);: [7, 5, 6, 3, 2, 1]
 
 Problem 4
 
