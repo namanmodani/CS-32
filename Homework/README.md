@@ -1,6 +1,6 @@
 # Homework Scores
 
-The following table houses my homework scores through CS 32.
+The following table houses my homework scores through CS 32. All homeworks combined were worth 25% of my final grade.
 
 | Homework | Score |
 | ------- | ----- |
