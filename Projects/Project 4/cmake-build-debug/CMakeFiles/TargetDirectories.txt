@@ -1,3 +1,0 @@
-/home/modani/GitHub/Unhinged/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/modani/GitHub/Unhinged/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/modani/GitHub/Unhinged/cmake-build-debug/CMakeFiles/Unhinged.dir
