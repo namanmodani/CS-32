@@ -1,0 +1,90 @@
+//
+// CS 32 Project 4
+// Naman Modani
+// report.txt
+//
+
+Unfinished Functionality
+
+    To my knowledge, I've implemented all functionality as described in the spec. My program -
+    with the provided main.cpp - runs fast, both on g32 and locally on the JetBrains
+    CLion IDE.
+
+Banned STL Classes Used
+
+    I did not make use of any disallowed classes.
+
+Unfixed Bugs
+
+    My code runs smoothly and has no currently known issues. There are no memory leaks, which
+    was confirmed by testing on g32.
+
+Testing
+
+    My classes were developed incrementally, one-by-one, although I was occasionally required
+    to go back to previous classes to update implementations. I created a separate
+    main_test.cpp to run unit tests for each piece of functionality I wrote.
+
+    PersonProfile
+
+        The only non-trivial methods in this class are AddAttValPair and GetAttVal.
+
+        I created ten AttValPairs, of which two were identical. I then assigned them to my
+        PersonProfile by inserting them into the RadixTree and vector members. Calling
+        GetNumAttValPairs() then returned 9, since there was a duplicate pair in the 10 I
+        provided.
+
+        I then used a loop to iterate through my PersonProfile’s collection of AttValPairs,
+        calling GetAttVal and printing on each iteration. This printed all unique AttValPairs
+        in the order they were inserted.
+
+    MemberDatabase
+
+        MemberDatabase’s methods serve to:
+            - Load the collection of all members into the RadixTree data structure
+            - Retrive emails of members who have a given AttValPair
+            - Retrive pointers to PersonProfiles given email addresses
+
+        To test loading, I created a text file members_test.txt, which contained the first 20
+        members from members.txt, since it was impractical to use members.txt, which had ~1.2M
+        lines. Before completing the method, i.e, before writing code to load information into
+        the RadixTree, I included cerr statements with labels (like “name: ”) within my
+        LoadDatabase method to ensure the file was being parsed correctly. After confirming this,
+        I completed the method and tested FindMatchingMembers and GetMemberByEmail individually.
+
+    AttributeTranslator
+
+        AttributeTranslator’s only purpose is to load and parse a text file like MemberDatabase and
+        retrieve AttValPairs corresponding to a provided pair.
+
+        Similar to what I did in MemberDatabase, I created a translator_test.txt with about 10 pairs of
+        AttValPairs. I also added extra line breaks to ensure the method handles them appropriately.
+        Before populating the data structure, I printed the data using cerr statements with labels.
+        After this, I inserted the AttVal pairs into the RadixTree and tested
+        FindCompatibleAttValPairs with 3 individual AttValPairs.
+
+    MatchMaker
+
+        This class has only one method, IdentifyRankedMatches, which wraps up all the classes
+        discussed above. This method uses a number of STL classes from the point where it accepts a
+        user’s email to when it populates the vector of EmailCounts. I developed this method
+        incrementally and printed out the information in each data structure before proceeding.
+
+        Once everything was behaving correctly and data was being printed as expected, I populated the
+        vector with EmailCounts and printed all EmailCounts - this printed all emails with their match
+        pair counts in descending order, with ties broken by email addresses in ascending alphabetical
+        order.
+
+    RadixTree
+
+        RadixTree has two primary functions - to insert a string mapped to a templated type
+        ValueType and to look up corresponding values of ValueType given a string.
+
+        My initial implementation of RadixTree utilized the STL map class as this made a “fake”
+        working implementation easy. I tested this simply by inserting values and looking them
+        up along with values not in the RadixTree. On completion of all other classes, I
+        started implementing this without the map.
+
+        For testing, I started with basic cases and tested them with search and then went on to more
+        complex and edge cases. Overall, while testing RadixTree, I gave special importance to test
+        cases with common prefixes.
