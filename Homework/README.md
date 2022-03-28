@@ -7,3 +7,5 @@ The following table houses my homework scores through CS 32. All homeworks combi
 | 1 | 96/100 |
 | 2 | 88/100 |
 | 3 | 96/100 |
+| 4 | 100/100 |
+| 5 | 100/100 |
