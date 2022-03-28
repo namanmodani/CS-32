@@ -5,3 +5,4 @@ The following table houses my exam scores through CS 32. While both midterms com
 | Exam | Score |
 | ------- | ----- |
 | Midterm 1 | 100/100 |
+| Midterm 2 | 100/100 |
