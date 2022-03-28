@@ -6,3 +6,4 @@ The following table houses my project scores through CS 32. Project 1 was worth 
 | ------- | ----- |
 | 1 | 95/100  |
 | 2 | 100/100  |
+| 3 | 100/100  |
