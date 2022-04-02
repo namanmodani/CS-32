@@ -4,4 +4,3 @@ Portfolio of projects developed for CS 32, taken under Professor David A. Smallb
 Language(s): C++ (CLion, g++)
 
 Course website: http://web.cs.ucla.edu/classes/winter22/cs32/
-
