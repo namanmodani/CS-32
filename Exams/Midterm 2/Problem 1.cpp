@@ -7,13 +7,13 @@ using namespace std;
 // SUBMIT AS YOUR ANSWER ONLY THE CODE BETWEEN THIS COMMENT AND THE
 // COMMENT AT THE END OF THE smallbig FUNCTION
 
-bool smallbig(vector<int> &c1, list<int> &c2) 
+bool smallbig(vector<int> &c1, list<int> &c2)
 {
     if(c1.size() != c2.size())
     {
         return false;
     }
-    
+
     list<int>::iterator it;
     int i = 0;
     for(it = c2.begin(); it != c2.end(); it++)

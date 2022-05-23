@@ -21,7 +21,7 @@ int product(int x, int y)
     {
         return x;
     }
-    
+
     return x + product(x, y - 1);
 }
 
