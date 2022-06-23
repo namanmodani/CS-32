@@ -25,5 +25,5 @@ The course comprised of seven projects, the content of which can be found in `/P
 
 1. [Gone with the Wind](/Projects/Project%201/)
 2. [Double Exposure](/Projects/Project%202/)
-3. [SuperPeachSisters](https://github.com/namanmodani/SuperPeachSisters)
+3. [Super Peach Sisters](https://github.com/namanmodani/SuperPeachSisters)
 4. [Unhinged](/Projects/Project%204/)
