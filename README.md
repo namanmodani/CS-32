@@ -21,9 +21,9 @@ Software used: C++.
 - Heaps
 - Graphs
 
-The course comprised of seven projects, the content of which can be found in `/Projects`. In chronological order:
+The course comprised of four projects, the content of which can be found in `/Projects`. In chronological order:
 
 1. [Gone with the Wind](/Projects/Project%201/)
 2. [Double Exposure](/Projects/Project%202/)
 3. [Super Peach Sisters](https://github.com/namanmodani/SuperPeachSisters)
-4. [Unhinged](/Projects/Project%204/)
+4. [Unhinged](https://github.com/namanmodani/Unhinged)
