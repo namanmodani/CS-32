@@ -1,6 +1,6 @@
 # CS 32: Introduction to Computer Science II
 
-This repository contains my work and course material for CS 31, taken under Professor David A. Smallberg in Winter 2022.
+This repository contains my work and course material for CS 31, taken under Professor David A. Smallberg in Winter 2022. The class is based on Frank M. Carrano's "Data Abstraction and Problem Solving with C++: Walls and Mirrors" (7th Edition). 
 
 Software used: C++.
 
