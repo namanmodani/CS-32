@@ -21,7 +21,7 @@ Software used: C++.
 - Heaps
 - Graphs
 
-CS 32's winter 2022 iteration comprised of four projects, the content of which can be found in `/Projects`. The last two projects being fairly large resulted in my decision to break off my monorepo-style approach for this class. In the interest of clean divison and independent scaling, the code for project 3 can be found [here](https://github.com/namanmodani/SuperPeachSisters), while the code for project 4 can be found [here](https://github.com/namanmodani/Unhinged). In chronological order:
+CS 32's winter 2022 iteration comprised of four projects, the content of which can be found in `Projects/`. The last two projects being fairly large resulted in my decision to break off my monorepo-style approach for this class. In the interest of clean divison and independent scaling, the code for project 3 can be found [here](https://github.com/namanmodani/SuperPeachSisters), while the code for project 4 can be found [here](https://github.com/namanmodani/Unhinged). In chronological order:
 
 1. [Gone with the Wind](/Projects/Project%201/)
 2. [Double Exposure](/Projects/Project%202/)
